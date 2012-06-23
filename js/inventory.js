@@ -17,17 +17,21 @@ astro.inventory.removeItem = function (itemName) {
 };
 
 astro.inventory.useItem = function (itemName, withWhat) {
-	if (astro.inventory.content[itemName].use[withWhat]) {
-		astro.inventory.content[itemName].use[withWhat]();
+	if (itemName != withWhat) {
+		if (astro.inventory.content[itemName].use[withWhat]) {
+			astro.inventory.content[itemName].use[withWhat]();
+		} else {
+			astro.inventory.content[itemName].use['noUse']();
+		}
 	} else {
-		astro.inventory.content[itemName].use['noUse']();
+		console.log('cant use item with itself');
 	}
 };
 
 astro.inventory.refreshInventory = function () {
 	var content = '';
 	$.each(astro.inventory.content, function(index, elem) {
-		content += '<div class="item" rel="'+index+'" title="'+elem.name+'"><div class="image"><img src="assets/images/icons/'+index+'.png" style="width: 100%; height:100%"/></div><div class="button">Use</div></div>';		
+		content += '<div class="item" rel="'+index+'" title="'+elem.name+'"><div class="image"><img src="assets/images/icons/'+index+'.png" style="width: 100%; height:100%"/></div><div class="button useItem">Use</div></div>';		
 	});
 	$('.inventory').html(content);
 };
@@ -82,7 +86,7 @@ astro.inventory.itemCatalogue = {
 				alert('cant map an innocent')
 			},
 			'noUse' : function() {
-				alert('cant use')
+				alert('cant use it here')
 			}
 		}
 	}

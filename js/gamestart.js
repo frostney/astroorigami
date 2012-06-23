@@ -70,4 +70,10 @@ $(document).ready(function() {
 			astro.inventory.useItem(ui.draggable.parent().attr('rel'), $(this).attr('rel'));
 		}
 	});
+	
+	$('.inventory').on('click', '.useItem', function() {
+		alert('using item');
+		// TODO pass element where player is standing currently
+		astro.inventory.useItem($(this).parent().attr('rel'), '');
+	});
 }); 
