@@ -6,7 +6,7 @@ window.setID = function(object) {
 	}
 },
 
-$(document).ready(function() {	
+$(document).ready(function() {
 
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle1'));
@@ -84,6 +84,35 @@ $(document).ready(function() {
 		});
 	});
 	
+	// set character into the scene
+	var scenePos = $('#viewport').offset();
+	$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
+	/*
+	 * Move character to mouse click position
+	 */
+	var newCharPos = scenePos.left + 10;
+	var interval;
+	$('#viewport').live('click', function(event) {
+		if (interval) {
+			window.canvasEngine.loop.removeTask(interval);
+		}
+		newCharPos = event.pageX;
+		interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
+			
+			var delta = loop.timeElapsed;
+			
+			var charCurPosX = $('.character:visible').offset().left;
+			if (charCurPosX > (newCharPos+10)) {
+				$('.character:visible').offset({left : charCurPosX - .2 * delta});
+			} else if (charCurPosX < (newCharPos-10)) {
+				$('.character:visible').offset({left : charCurPosX + .2 * delta});
+			} else {
+				window.canvasEngine.loop.removeTask(interval);
+			}
+			
+		}, 33);
+		
+	});
 	
 }); 
 
