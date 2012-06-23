@@ -16,7 +16,7 @@
 		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
 		<link rel="shortcut icon" href="/favicon.ico" />
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-		
+
 		<link rel="stylesheet" type="text/css" href="style/lib/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="style/preload.css" />
 		<link rel="stylesheet" type="text/css" href="style/lib/animate.css" />
@@ -43,13 +43,22 @@
 		<script src="js/lib/Lyria.SceneManager.js"></script>
 		<script src="js/lib/Lyria.UI.js"></script>
 		<script src="js/lib/Lyria.Video.js"></script>
-		<script>
-			
-			
-		</script>
+
+		<script src="js/gamestart.js"></script>
 	</head>
 
 	<body>
-		
+
+		<div id="container">
+
+			<div id="viewport">
+				<div id="startScene" class="scene"></div>
+				<div id="puzzle1" class="scene"></div>
+				<div id="puzzle2" class="scene"></div>
+				<div id="puzzle3" class="scene"></div>
+				<div id="endScene" class="scene"></div>
+			</div>
+		</div>
+
 	</body>
 </html>
