@@ -83,6 +83,19 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('#talk .button').on('click', function() {
+		console.log('talk button click')
+		var character = $('#viewport .character:visible');
+		$('.interactableNpc:visible').each(function(index) {
+			console.log('testing for a hit ')
+		  	if (hitTest(character, $(this))) {
+		  		var rel = $(this).attr('rel');
+		  		astro.dialog.startDialog(rel);
+		  		return false;
+		  	}
+		});
+	});
+	
 	
 }); 
 
