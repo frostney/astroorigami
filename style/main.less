@@ -23,29 +23,3 @@ body, html {
   
   background: #fff;
 }
-
-
-#inventory {
-  @itemSize: 64px;
-  @inventoryWidth: 800px;
-  
-  width: @inventoryWidth;
-  margin-left: -@inventoryWidth / 2;
-  bottom: 32px;
-  left: 50%;
-  position: absolute;
-  
-  .item {
-    width: @itemSize;
-    height: @itemSize;
-    display: inline-block;
-    
-    .border-radius(4px);
-    .box-shadow(0px, 0px, 8px, #ddd);
-    
-    background: #ddd;
-    padding: 4px;
-    
-  }
-  
-}
