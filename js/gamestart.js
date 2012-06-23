@@ -71,4 +71,45 @@ $(document).ready(function() {
 		console.log('start dialog');
 		astro.dialog.turnPage();
 	});
+	
+	$('#pickup .button').on('click', function() {
+		console.log('pickup button click')
+		var character = $('#viewport .character:visible');
+		$('.interactableElem:visible').each(function(index) {
+			console.log('testing for a hit ')
+		  	if (hitTest(character, $(this))) {
+		  		console.log('hit sth')
+
+		  		var rel = $(this).attr('rel');
+		  		console.log(rel)
+		  		astro.inventory.addItem(rel);
+		  		$(this).remove();
+		  	}
+		});
+	});
+	
+	
 }); 
+
+function hitTest(a, b) {
+	var aPos = a.offset();
+	var bPos = b.offset();
+	var aObj = {
+		left : aPos.left,
+		right : aPos.left + a.width(),
+		top : aPos.top,
+		bottum : aPos.top + a.height()
+	};
+	
+	var bObj = {
+		left : bPos.left,
+		right : bPos.left + b.width(),
+		top : bPos.top,
+		bottum : bPos.top + b.height()
+	};
+
+
+	// http://tekpool.wordpress.com/2006/10/11/rectangle-intersection-determine-if-two-given-rectangles-intersect-each-other-or-not/
+	return !(bObj.left > aObj.right || bObj.right < aObj.left || bObj.top > aObj.bottom || bObj.bottom < aObj.top
+	);
+}
