@@ -55,8 +55,8 @@ $(document).ready(function() {
 
 	
 	// debug content
-	astro.inventory.addItem ('stone');
-	astro.inventory.addItem ('wood');
+	astro.inventory.addItem ('scissors');
+	astro.inventory.addItem ('pillow');
 
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
