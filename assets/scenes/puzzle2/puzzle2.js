@@ -27,7 +27,7 @@ function(sender, localization) {
 		var interval;
 		$('#viewport').live('click', function(event) {
 			if (interval) {
-				clearInterval(interval);
+				window.canvasEngine.loop.removeTask(interval);
 			}
 			newCharPos = event.pageX;
 			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
@@ -36,14 +36,14 @@ function(sender, localization) {
 				
 				var charCurPosX = $('.character:visible').offset().left;
 				if (charCurPosX > (newCharPos+10)) {
-					$('.character:visible').offset({left : charCurPosX - 5 });
+					$('.character:visible').offset({left : charCurPosX - .5 * delta});
 				} else if (charCurPosX < (newCharPos-10)) {
-					$('.character:visible').offset({left : charCurPosX + 5 });
+					$('.character:visible').offset({left : charCurPosX + .5 * delta});
 				} else {
-					clearInterval(interval);
+					window.canvasEngine.loop.removeTask(interval);
 				}
 				
-			}, 50);
+			}, 33);
 			
 		});
 		}, 100);
