@@ -49,7 +49,7 @@ function(sender, localization) {
 		
 		
 	    var StarAnimation = new Scene_Asset_Animation(1, 5);
-	    StarAnimation.load('/images/star1.png', function(StarAnimation) {
+	    StarAnimation.load(Lyria.Resource.name('star1.png', 'image'), function(StarAnimation) {
 	    	for(var i = 0; i < 10; i++) {
 	        	var obj = new Game_Star(StarAnimation);
 	        	obj.position.x = 800*Math.random();
@@ -61,7 +61,7 @@ function(sender, localization) {
 	    
 	    
 	    var FireflyAnimation = new Scene_Asset_Animation(1, 6);
-	    FireflyAnimation.load('/images/firefly.png', function(FireflyAnimation) {
+	    FireflyAnimation.load(Lyria.Resource.name('firefly.png', 'image'), function(FireflyAnimation) {
 	    	for(var i = 0; i < 10; i++) {
 	        	var obj = new Game_Firefly(FireflyAnimation);
 	        	window.canvasEngine.sceneGraph.add(obj);
