@@ -24,10 +24,14 @@ astro.dialog.content = {
 astro.dialog.startDialog = function(npcId) {
 	if (astro.npc.content[npcId]) {
 		var state = astro.npc.content[npcId].state;
-		var textObj = Lyria.Utils.cloneObject(astro.dialog.content[npcId][state]);
-		astro.dialog.currentDialog = textObj;
-		astro.dialog.currentNpc = npcId;
-		astro.dialog.turnPage();
+		if(astro.dialog.content[npcId][state]) {
+			var textObj = Lyria.Utils.cloneObject(astro.dialog.content[npcId][state]);
+			astro.dialog.currentDialog = textObj;
+			astro.dialog.currentNpc = npcId;
+			astro.dialog.turnPage();
+		} else {
+			alert('no dialog for npc ' + npcId + ' and state ' + state);
+		}
 	} else {
 		console.log('cant find npc');
 	}
@@ -47,6 +51,7 @@ astro.dialog.turnPage = function() {
 		if (textObj.texts[page]) {
 			console.log('if')
 			buttonElem.attr('page', page);
+			textElem.css('color', astro.npc.content[astro.dialog.currentNpc].textColor);
 			textElem.html(textObj.texts[page].npc);
 			buttonElem.html(textObj.texts[page].player);
 			$('.dialog').removeClass('hidden');
@@ -57,6 +62,7 @@ astro.dialog.turnPage = function() {
 			$('.dialog').addClass('hidden');
 			buttonElem.attr('page', 0);
 			astro.npc.content[astro.dialog.currentNpc].state = textObj.postcondition;
+			astro.dialog.currentDialog = {};
 		}
 	} else {
 		console.log('else')
