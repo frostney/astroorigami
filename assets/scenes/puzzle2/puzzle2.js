@@ -43,7 +43,7 @@ function(sender, localization) {
 			}, 50);
 			
 		});
-		}, 1);
+		}, 100);
 	}
 
 	
