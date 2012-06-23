@@ -30,7 +30,10 @@ function(sender, localization) {
 				clearInterval(interval);
 			}
 			newCharPos = event.pageX;
-			interval = setInterval(function moveChar() {
+			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
+				
+				var delta = loop.timeElapsed;
+				
 				var charCurPosX = $('.character:visible').offset().left;
 				if (charCurPosX > (newCharPos+10)) {
 					$('.character:visible').offset({left : charCurPosX - 5 });
