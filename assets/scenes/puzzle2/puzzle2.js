@@ -44,6 +44,29 @@ function(sender, localization) {
 			
 		});
 		}, 100);
+		
+		
+		
+		
+	    var StarAnimation = new Scene_Asset_Animation(1, 5);
+	    StarAnimation.load('/images/star1.png', function(StarAnimation) {
+	    	for(var i = 0; i < 10; i++) {
+	        	var obj = new Game_Star(StarAnimation);
+	        	obj.position.x = 800*Math.random();
+	        	obj.position.y = 100*Math.random() + 10;
+	        	window.canvasEngine.sceneGraph.add(obj);
+	        }
+	    });
+	    
+	    
+	    
+	    var FireflyAnimation = new Scene_Asset_Animation(1, 6);
+	    FireflyAnimation.load('/images/firefly.png', function(FireflyAnimation) {
+	    	for(var i = 0; i < 10; i++) {
+	        	var obj = new Game_Firefly(FireflyAnimation);
+	        	window.canvasEngine.sceneGraph.add(obj);
+	        }
+	    });
 	}
 
 	

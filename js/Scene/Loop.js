@@ -22,6 +22,12 @@ var Scene_Loop = new Class({
 		setID(t);
 		
 		this.tasks[t.$id] = t;
+		
+		return t.$id;
+	},
+	
+	removeTask: function(taskID){
+		delete this.tasks[taskID];
 	},
 	
 	start: function() {
