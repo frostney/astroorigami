@@ -25,7 +25,9 @@ var Scene_SceneGraph = new Class({
 		delete this.children[element.$id];
 	},
 	
-	update: function(gameTime) {
+	update: function(loop) {
+		
+		var gameTime = loop.currentFrame;
 		
 		this.lastUpdate = this.currentTime;
 		this.currentTime = gameTime;

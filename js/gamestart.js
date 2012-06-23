@@ -6,7 +6,7 @@ window.setID = function(object) {
 	}
 },
 
-$(document).ready(function() {
+$(document).ready(function() {	
 
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle1'));
@@ -29,28 +29,23 @@ $(document).ready(function() {
     
     var viewport = new Scene_RenderTarget_Viewport($('#viewport'), sceneGraph);
     
-    var sprite = new Scene_Asset_Animation(1, 5);
+    var FireflyAnimation = new Scene_Asset_Animation(1, 6);
     
-    
-    
-    sprite.load('/images/dummy_anim.png', function(sprite) {
-    	for(var i = 0; i < 3; i++) {
-        	var obj = new Game_TestObject();
-        	obj.sprite = sprite;
-        	obj.x = 250;
-        	obj.y = 100;
+    FireflyAnimation.load('/images/firefly.png', function(FireflyAnimation) {
+    	for(var i = 0; i < 10; i++) {
+        	var obj = new Game_Firefly(FireflyAnimation);
         	sceneGraph.add(obj);
         }
     });
     
     loop.start();
     
-    loop.addTask(function() {
-    	sceneGraph.update();
+    loop.addTask(function(loop) {
+    	sceneGraph.update(loop);
     }, 33);
     
-    loop.addTask(function() {
-    	viewport.render();
+    loop.addTask(function(loop) {
+    	viewport.render(loop);
     }, 33);
 
 	
@@ -71,4 +66,45 @@ $(document).ready(function() {
 		console.log('start dialog');
 		astro.dialog.turnPage();
 	});
+	
+	$('#pickup .button').on('click', function() {
+		console.log('pickup button click')
+		var character = $('#viewport .character:visible');
+		$('.interactableElem:visible').each(function(index) {
+			console.log('testing for a hit ')
+		  	if (hitTest(character, $(this))) {
+		  		console.log('hit sth')
+
+		  		var rel = $(this).attr('rel');
+		  		console.log(rel)
+		  		astro.inventory.addItem(rel);
+		  		$(this).remove();
+		  	}
+		});
+	});
+	
+	
 }); 
+
+function hitTest(a, b) {
+	var aPos = a.offset();
+	var bPos = b.offset();
+	var aObj = {
+		left : aPos.left,
+		right : aPos.left + a.width(),
+		top : aPos.top,
+		bottum : aPos.top + a.height()
+	};
+	
+	var bObj = {
+		left : bPos.left,
+		right : bPos.left + b.width(),
+		top : bPos.top,
+		bottum : bPos.top + b.height()
+	};
+
+
+	// http://tekpool.wordpress.com/2006/10/11/rectangle-intersection-determine-if-two-given-rectangles-intersect-each-other-or-not/
+	return !(bObj.left > aObj.right || bObj.right < aObj.left || bObj.top > aObj.bottom || bObj.bottom < aObj.top
+	);
+}
