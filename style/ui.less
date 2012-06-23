@@ -1,24 +1,59 @@
 #inventory {
   @itemSize: 64px;
   @inventoryWidth: 800px;
+  @borderRadius: 4px;
+  @shadowBlur: 8px;
+  @shadowColor: #ddd;
   
   width: @inventoryWidth;
   margin-left: -@inventoryWidth / 2;
-  bottom: 32px;
+  bottom: 8%;
   left: 50%;
   position: absolute;
   
   .item {
-    width: @itemSize;
-    height: @itemSize;
     display: inline-block;
     
-    .border-radius(4px);
-    .box-shadow(0px, 0px, 8px, #ddd);
+    .image {
+      width: @itemSize;
+      height: @itemSize;
+      
+      .border-radius(@borderRadius);
+      .box-shadow(0px, 0px, @shadowBlur, @shadowColor);
+      
+      border: 1px solid #eee;
+      
+      .linearVertBackground(#cacaca, #ddd);
+      padding: 4px;
+    }
     
-    background: #ddd;
-    padding: 4px;
-    
+    .button {
+      width: @itemSize;
+      height: @itemSize / 3;
+      
+      font-size: 10px;
+      align: center;
+      
+      background: #eee;
+      .transition(all, 400ms, ease-in-out);
+      
+      .border-radius(@borderRadius);
+      .box-shadow(0px, 0px, @shadowBlur, @shadowColor);
+      
+      cursor: pointer;
+      
+      &:hover {
+        background: #fff;
+      }
+      
+      &:active {
+        
+      }
+      
+      &.disabled {
+        .opacity(0.5);
+      }
+    }
   }
   
 }
