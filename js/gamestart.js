@@ -8,6 +8,16 @@ window.setID = function(object) {
 
 $(document).ready(function() {
 
+	
+	window.canvasEngine = {};
+	var loop = window.canvasEngine.loop =  new Scene_Loop();
+    var sceneGraph = window.canvasEngine.sceneGraph = new Scene_SceneGraph();
+    loop.start();
+    loop.addTask(function(loop) {
+    	sceneGraph.update(loop);
+    }, 33);
+	
+	
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle1'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle2'));
@@ -21,20 +31,7 @@ $(document).ready(function() {
 		Lyria.SceneManager.render();
 		Lyria.SceneManager.update(0);
 	})();
-	
-	
-	
-	window.canvasEngine = {};
-	var loop = window.canvasEngine.loop =  new Scene_Loop();
-    var sceneGraph = window.canvasEngine.sceneGraph = new Scene_SceneGraph();
-    var viewport = window.canvasEngine.viewport = new Scene_RenderTarget_Viewport($('#viewport'), sceneGraph);
-    loop.start();
-    loop.addTask(function(loop) {
-    	sceneGraph.update(loop);
-    }, 33);
-    loop.addTask(function(loop) {
-    	viewport.render(loop);
-    }, 33);
+    
 
 	
 	// debug content
