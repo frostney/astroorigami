@@ -15,40 +15,6 @@ function(sender, localization) {
 	//background.push();
 	
 	function onSceneActive() {
-		// TODO: Timeout 'cuz Chrome is too faaast
-		setTimeout(function() {
-		// set character to the left of the scene
-		var scenePos = $('#viewport').offset();
-		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
-		/*
-		 * Move character to mouse click position
-		 */
-		var newCharPos = scenePos.left + 10;
-		var interval;
-		$('#viewport').live('click', function(event) {
-			if (interval) {
-				window.canvasEngine.loop.removeTask(interval);
-			}
-			newCharPos = event.pageX;
-			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
-				
-				var delta = loop.timeElapsed;
-				
-				var charCurPosX = $('.character:visible').offset().left;
-				if (charCurPosX > (newCharPos+10)) {
-					$('.character:visible').offset({left : charCurPosX - .5 * delta});
-				} else if (charCurPosX < (newCharPos-10)) {
-					$('.character:visible').offset({left : charCurPosX + .5 * delta});
-				} else {
-					window.canvasEngine.loop.removeTask(interval);
-				}
-				
-			}, 33);
-			
-		});
-		}, 100);
-		
-		
 		
 		
 	    var StarAnimation = new Scene_Asset_Animation(1, 5);
