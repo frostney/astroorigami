@@ -3,8 +3,7 @@
  */
 var Scene_BaseNode = new Class({
 
-	x: 0,
-	y: 0,
+	position: new Scene_Vector(0,0),
 	z: 0,
 	
 	children: {},

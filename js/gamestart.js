@@ -6,7 +6,7 @@ window.setID = function(object) {
 	}
 },
 
-$(document).ready(function() {
+$(document).ready(function() {	
 
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle1'));
@@ -29,28 +29,23 @@ $(document).ready(function() {
     
     var viewport = new Scene_RenderTarget_Viewport($('#viewport'), sceneGraph);
     
-    var sprite = new Scene_Asset_Animation(1, 5);
+    var FireflyAnimation = new Scene_Asset_Animation(1, 6);
     
-    
-    
-    sprite.load('/images/dummy_anim.png', function(sprite) {
-    	for(var i = 0; i < 3; i++) {
-        	var obj = new Game_TestObject();
-        	obj.sprite = sprite;
-        	obj.x = 250;
-        	obj.y = 100;
+    FireflyAnimation.load('/images/firefly.png', function(FireflyAnimation) {
+    	for(var i = 0; i < 10; i++) {
+        	var obj = new Game_Firefly(FireflyAnimation);
         	sceneGraph.add(obj);
         }
     });
     
     loop.start();
     
-    loop.addTask(function() {
-    	sceneGraph.update();
+    loop.addTask(function(loop) {
+    	sceneGraph.update(loop);
     }, 33);
     
-    loop.addTask(function() {
-    	viewport.render();
+    loop.addTask(function(loop) {
+    	viewport.render(loop);
     }, 33);
 
 	
