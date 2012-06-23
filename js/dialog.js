@@ -3,24 +3,7 @@ astro.dialog = astro.dialog || {};
 
 astro.dialog.currentDialog = {};
 astro.dialog.currentNpc = 'strongGuy';
-astro.dialog.content = {
-	'strongGuy' : {
-		0 : {
-			'precondition' : 0,
-			'postcondition': 1,
-			'texts' : [
-				{
-					npc : 'Hello <b>how</b> are you',
-					player: 'Good and you'
-				},
-				{
-					npc : '2',
-					player: '3'
-				}
-			]
-		}
-	},
-};
+
 astro.dialog.startDialog = function(npcId) {
 	if (astro.npc.content[npcId]) {
 		var state = astro.npc.content[npcId].state;
@@ -69,4 +52,23 @@ astro.dialog.turnPage = function() {
 		// TODO get npcId from scene
 		astro.dialog.startDialog('strongGuy');	
 	}
+};
+
+astro.dialog.content = {
+	'strongGuy' : {
+		0 : {
+			'precondition' : 0,
+			'postcondition': 1,
+			'texts' : [
+				{
+					npc : 'Hello <b>how</b> are you',
+					player: 'Good and you'
+				},
+				{
+					npc : '2',
+					player: '3'
+				}
+			]
+		}
+	},
 };

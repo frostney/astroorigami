@@ -51,57 +51,134 @@ astro.inventory.refreshInventory = function () {
 	});
 };
 
-
 astro.inventory.itemCatalogue = {
-	'stone' : {
-		'name' : 'Stones',
+	'pillow' : {
+		'name' : 'Pillow',
 		'use' : {
-			'tree' : function() {
-				alert('cutting down tree')
-			},
-			'wood' : function() {
-				astro.inventory.removeItem('stone');
-				astro.inventory.removeItem('wood');
-				alert('Created map')
-				astro.inventory.addItem ('map');
-			},
-			'npc' : function() {
-				alert('cant kill an innocent')
+			'floor' : function () {
+				//TODO change state of tallGuy so he accepts the sleeping area
 			},
 			'noUse' : function() {
 				alert('cant use')
 			}
 		}
 	},
-	'wood' : {
-		'name' : 'Wood',
+	'rope' : {
+		'name' : 'Rope',
 		'use' : {
-			'tree' : function() {
-				alert('cutting down tree')
-			},
-			'stone' : function() {
-				// execut function in shield
-				astro.inventory.content['stone'].use['wood']();
-			},
-			'npc' : function() {
-				alert('cant kill an innocent')
+			'cactus' : function () {
+				//TODO change state of cactus
 			},
 			'noUse' : function() {
 				alert('cant use')
 			}
 		}
 	},
-	'map' : {
-		'name' : 'Map',
+	'scissors' : {
+		'name' : 'Scissors',
 		'use' : {
-			'tree' : function() {
-				alert('cutting down tree')
+			'cactus' : function () {
+				//TODO change state of cactus
 			},
-			'npc' : function() {
-				alert('cant map an innocent')
+			'pinWheelTree' : function () {
+				//TODO change state of pin wheel tree
 			},
 			'noUse' : function() {
-				alert('cant use it here')
+				alert('cant use')
+			}
+		}
+	},
+	'cherries' : {
+		'name' : 'Cherries',
+		'use' : {
+			'flowerPotWater' : function() {
+				astro.inventory.removeItem('cherries');
+				astro.inventory.addItem('flowerPotWater');
+			},
+			'noUse' : function() {
+				alert('cant use')
+			}
+		}
+	},
+	'flowerPot' : {
+		'name' : 'Flower Pot',
+		'use' : {
+			'water' : function () {
+				astro.inventory.removeItem('flowerPot');
+				astro.inventory.addItem('flowerPotWater');
+			},
+			'cactus' : function () {
+				astro.inventory.removeItem('flowerPot');
+				astro.inventory.addItem('flowerPotCactus');
+			},
+			'noUse' : function() {
+				alert('cant use')
+			}
+		}
+	},
+	'flowerPotCactus' : {
+		'name' : 'Flower Pot with Cactus Water',
+		'use' : {
+			'smallGuy' : function() {
+				astro.inventory.removeItem('flowerPotCactus');
+				// increase npc state
+				astro.npc.content['smallGuy'].state++;
+			},
+			'noUse' : function() {
+				alert('cant use')
+			}
+		}
+	},
+	'flowerPotWater' : {
+		'name' : 'Flower Pot with Water ',
+		'use' : {
+			'cherries' : function() {
+				astro.inventory.content['cherries'].use['flowerPotWater']();
+			},
+			'tallGuy' : function() {
+				astro.inventory.removeItem('flowerPotWater');
+				astro.inventory.addItem('flowerPot');
+				// increase npc state
+				astro.npc.content['tallGuy'].state++;
+			},
+			'noUse' : function() {
+				alert('cant use')
+			}
+		}
+	},
+	'ticket' : {
+		'name' : 'Ticket',
+		'use' : {
+			'rocket' : function() {
+				astro.inventory.removeItem('ticket');
+				// TODO increase state of rocket
+			},
+			'noUse' : function() {
+				alert('cant use')
+			}
+		}
+	},
+	'partyHat' : {
+		'name' : 'Party Hat',
+		'use' : {
+			'rocket' : function() {
+				astro.inventory.removeItem('partyHat');
+				// TODO increase state of rocket
+			},
+			'noUse' : function() {
+				alert('cant use')
+			}
+		}
+	},
+	'pinWheel' : {
+		'name' : 'Pin Wheel',
+		'use' : {
+			'rocket' : function() {
+				astro.inventory.removeItem('pinWheel');
+				// TODO increase state of rocket
+			},
+			'noUse' : function() {
+				alert('cant use')
 			}
 		}
 	}

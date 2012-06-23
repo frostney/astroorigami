@@ -6,12 +6,12 @@ astro.npc.content = {
 		'textColor' : 'blue',
 		'state' : 0,
 	},
-	'bigGuy' : {
+	'tallGuy' : {
 		'name' : 'Big guy',
 		'textColor' : 'green',
 		'state' : 0,
 	},
-	'tinyGuy' : {
+	'smallGuy' : {
 		'name' : 'Tiny guy',
 		'textColor' : 'yellow',
 		'state' : 0,
