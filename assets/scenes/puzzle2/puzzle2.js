@@ -100,15 +100,27 @@ function(sender, localization) {
 	}
 
 	
-	var angle = 0;
+	var angle = angle2 = angle3 = 0;
 	
 	function update(dt) {
 		angle++;
-		if (angle == 360) {
+		if (angle == 360.0) {
 			angle = 0;
 		}
 		
-		$('.pinwheel').rotate(angle);
+		angle2 = angle2 + 0.5;
+		if (angle2 == 360.0) {
+			angle2 = 0;
+		}
+		
+		angle3 = angle3 + 0.25;
+		if (angle3 == 360.0) {
+			angle3 = 0;
+		}
+		
+		$('.pinwheel.small').rotate(angle);
+		$('.pinwheel.medium').rotate(angle2);
+		$('.pinwheel.big').rotate(angle3);
 	}
 	
 	return {
