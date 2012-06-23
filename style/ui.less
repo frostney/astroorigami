@@ -1,4 +1,4 @@
-#inventory {
+.status {
   @itemSize: 64px;
   @inventoryWidth: 800px;
   @borderRadius: 4px;
@@ -11,17 +11,21 @@
   left: 50%;
   position: absolute;
 
-  .stackable .item {
+  .inventory .item {
     float: left;
   }
 
-  .interactable .item {
+  .usercontrols .item {
     float: right;
   }
   
   .item {
     display: inline-block;
     margin: 4px;
+    
+    &.disabled {
+      .opacity(0.5);
+    }
     
     .image {
       width: @itemSize;
@@ -41,7 +45,7 @@
       height: @itemSize / 3;
       
       font-size: 10px;
-      align: center;
+      text-align: center;
       
       background: #eee;
       .transition(all, 400ms, ease-in-out);
@@ -57,10 +61,6 @@
       
       &:active {
         
-      }
-      
-      &.disabled {
-        .opacity(0.5);
       }
     }
   }
