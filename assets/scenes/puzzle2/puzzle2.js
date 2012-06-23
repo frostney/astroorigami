@@ -15,10 +15,11 @@ function(sender, localization) {
 	//background.push();
 	
 	function onSceneActive() {
+		// TODO: Timeout 'cuz Chrome is too faaast
+		setTimeout(function() {
 		// set character to the left of the scene
 		var scenePos = $('#viewport').offset();
 		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
-		
 		/*
 		 * Move character to mouse click position
 		 */
@@ -42,7 +43,7 @@ function(sender, localization) {
 			}, 50);
 			
 		});
-		
+		}, 1);
 	}
 
 	
