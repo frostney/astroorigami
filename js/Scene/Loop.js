@@ -39,7 +39,7 @@ var Scene_Loop = new Class({
 			
 			t.timeElapsed += delta;
 			if(t.timeElapsed > t.time) {
-				t.callback();
+				t.callback(this);
 				t.timeElapsed -= t.time;
 			}
 		}

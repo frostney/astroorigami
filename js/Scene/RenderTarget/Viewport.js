@@ -21,7 +21,7 @@ var Scene_RenderTarget_Viewport = new Class({
 		canvas.attr('width', element.width());
 		canvas.attr('height', element.height());
 		
-		canvas.css('top', 0);
+		canvas.css('top', 0).css('background-color', 'black');
 		
 		canvas.addClass('viewport absolute');
 		
