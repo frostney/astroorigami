@@ -62,4 +62,9 @@ $(document).ready(function() {
 		// TODO pass element where player is standing currently
 		astro.inventory.useItem($(this).parent().attr('rel'), '');
 	});
+	
+	$('.dialog .button').on('click', function() {
+		console.log('start dialog');
+		astro.dialog.turnPage();
+	});
 }); 
