@@ -7,10 +7,10 @@ var Game_Firefly = new Class({
 	frameTimeElapsed: 0,
 	frame: 0,
 	
-	position: new Scene_Vector(250, 150),
+	position: new Scene_Vector(100, 250),
 	vector: new Scene_Vector(0, 0),
 	direction: null,
-	center: new Scene_Vector(250, 150),
+	center: new Scene_Vector(100, 250),
 	maxDistance: 100,
 	power: .008,
 	momentum: new Scene_Vector(0, 0),
