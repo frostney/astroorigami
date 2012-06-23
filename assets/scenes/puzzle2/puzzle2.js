@@ -40,7 +40,7 @@ function(sender, localization) {
 				} else if (charCurPosX < (newCharPos-10)) {
 					$('.character:visible').offset({left : charCurPosX + 5 });
 				} else {
-					clearInterval(interval);
+					window.canvasEngine.loop.removeTask(interval);
 				}
 				
 			}, 50);
