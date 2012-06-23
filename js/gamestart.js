@@ -14,7 +14,7 @@ $(document).ready(function() {
 	Lyria.SceneManager.add(Lyria.Scene('puzzle3'));
 	Lyria.SceneManager.add(Lyria.Scene('endScene'));
 
-	Lyria.SceneManager.show('startScene');
+	Lyria.SceneManager.show('puzzle2');
 
 	(function animLoop() {
 		requestAnimFrame(animLoop);
