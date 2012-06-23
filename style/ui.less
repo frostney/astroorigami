@@ -10,9 +10,18 @@
   bottom: 8%;
   left: 50%;
   position: absolute;
+
+  .stackable .item {
+    float: left;
+  }
+
+  .interactable .item {
+    float: right;
+  }
   
   .item {
     display: inline-block;
+    margin: 4px;
     
     .image {
       width: @itemSize;
