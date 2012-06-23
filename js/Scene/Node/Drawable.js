@@ -14,6 +14,10 @@ var Scene_Node_Drawable = new Class({
 	getSprite: function() {
 		return this.sprite;
 	},
+
+	render: function(context) {
+		this.sprite.render(context, this.x, this.y);
+	},
 	
 	draw: function(sceneGraph) {
 		

@@ -29,12 +29,12 @@ $(document).ready(function() {
     
     var viewport = new Scene_RenderTarget_Viewport($('#viewport'), sceneGraph);
     
-    var sprite = new Scene_Asset_Sprite();
+    var sprite = new Scene_Asset_Animation(1, 5);
     
     
     
-    sprite.load('/images/dummy.png', function(sprite) {
-    	for(var i = 0; i < 1000; i++) {
+    sprite.load('/images/dummy_anim.png', function(sprite) {
+    	for(var i = 0; i < 3; i++) {
         	var obj = new Game_TestObject();
         	obj.sprite = sprite;
         	obj.x = 250;
@@ -46,8 +46,12 @@ $(document).ready(function() {
     loop.start();
     
     loop.addTask(function() {
+    	sceneGraph.update();
+    }, 33);
+    
+    loop.addTask(function() {
     	viewport.render();
-    }, 16);
+    }, 33);
 
 	
 	// debug content
