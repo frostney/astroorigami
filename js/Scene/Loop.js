@@ -7,6 +7,7 @@ var Scene_Loop = new Class({
 	
 	lastFrame: 0,
 	currentFrame: 0,
+	timeElapsed: 0,
 	
 	initialize : function() {
 		
@@ -22,6 +23,12 @@ var Scene_Loop = new Class({
 		setID(t);
 		
 		this.tasks[t.$id] = t;
+		
+		return t.$id;
+	},
+	
+	removeTask: function(taskID){
+		delete this.tasks[taskID];
 	},
 	
 	start: function() {
@@ -32,7 +39,7 @@ var Scene_Loop = new Class({
 	execute: function(time) {
 		this.lastFrame = this.currentFrame;
 		this.currentFrame = time;
-		var delta = this.currentFrame - this.lastFrame;
+		var delta = this.timeElapsed = this.currentFrame - this.lastFrame;
 		
 		for(var i in this.tasks) {
 			var t = this.tasks[i];

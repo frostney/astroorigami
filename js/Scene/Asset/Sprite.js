@@ -35,7 +35,7 @@ var Scene_Asset_Sprite = new Class({
 			callback(self);
 		};
 		
-		image.src = '/assets/'+src;
+		image.src = src;
 	},
 
 });

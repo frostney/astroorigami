@@ -43,7 +43,7 @@ var Scene_Asset_Animation = new Class({
 			callback(self);
 		};
 		
-		image.src = '/assets/'+src;
+		image.src = src;
 	},
 
 });

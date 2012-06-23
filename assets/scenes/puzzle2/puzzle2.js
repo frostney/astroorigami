@@ -15,10 +15,11 @@ function(sender, localization) {
 	//background.push();
 	
 	function onSceneActive() {
+		// TODO: Timeout 'cuz Chrome is too faaast
+		setTimeout(function() {
 		// set character to the left of the scene
 		var scenePos = $('#viewport').offset();
 		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
-		
 		/*
 		 * Move character to mouse click position
 		 */
@@ -29,7 +30,10 @@ function(sender, localization) {
 				clearInterval(interval);
 			}
 			newCharPos = event.pageX;
-			interval = setInterval(function moveChar() {
+			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
+				
+				var delta = loop.timeElapsed;
+				
 				var charCurPosX = $('.character:visible').offset().left;
 				if (charCurPosX > (newCharPos+10)) {
 					$('.character:visible').offset({left : charCurPosX - 5 });
@@ -42,7 +46,30 @@ function(sender, localization) {
 			}, 50);
 			
 		});
+		}, 100);
 		
+		
+		
+		
+	    var StarAnimation = new Scene_Asset_Animation(1, 5);
+	    StarAnimation.load(Lyria.Resource.name('star1.png', 'image'), function(StarAnimation) {
+	    	for(var i = 0; i < 10; i++) {
+	        	var obj = new Game_Star(StarAnimation);
+	        	obj.position.x = 800*Math.random();
+	        	obj.position.y = 100*Math.random() + 10;
+	        	window.canvasEngine.sceneGraph.add(obj);
+	        }
+	    });
+	    
+	    
+	    
+	    var FireflyAnimation = new Scene_Asset_Animation(1, 6);
+	    FireflyAnimation.load(Lyria.Resource.name('firefly.png', 'image'), function(FireflyAnimation) {
+	    	for(var i = 0; i < 10; i++) {
+	        	var obj = new Game_Firefly(FireflyAnimation);
+	        	window.canvasEngine.sceneGraph.add(obj);
+	        }
+	    });
 	}
 
 	
@@ -73,8 +100,20 @@ function(sender, localization) {
 	}
 
 	
+	var angle = 0;
+	
+	function update(dt) {
+		angle++;
+		if (angle == 360) {
+			angle = 0;
+		}
+		
+		$('.pinwheel').rotate(angle);
+	}
+	
 	return {
 		backgrounds: backgrounds,
+		update: update,
 		onSceneActive: onSceneActive
 	}
 }
