@@ -19,6 +19,14 @@ var Scene_Asset_Animation = new Class({
 		this.frames = frames;
 	},
 	
+	render: function(context, x, y, animation, frame) {
+		
+		var w = this.width;
+		var h = this.height;
+		
+		context.drawImage(this.image, frame * w, animation * h, w, h, x, y, w, h);
+	},
+	
 	load: function(src, callback) {
 		this.src = src;
 		
@@ -29,8 +37,8 @@ var Scene_Asset_Animation = new Class({
 		image.onload = function() {
 			
 			self.image = image;
-			self.width = image.width;
-			self.height = image.height;
+			self.width = image.width / self.frames;
+			self.height = image.height / self.animations;
 			
 			callback(self);
 		};

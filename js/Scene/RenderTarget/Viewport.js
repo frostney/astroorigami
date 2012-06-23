@@ -45,8 +45,7 @@ var Scene_RenderTarget_Viewport = new Class({
 		this.context.clearRect(0, 0, this.canvas.attr('width'), this.canvas.attr('height'));
 		
 		for(var i = 0; i < batch.length; i++) {
-			var item = batch[i];
-			this.context.drawImage(item.getSprite().image, item.x, item.y);
+			batch[i].render(this.context);
 		}
 	},
 

@@ -15,6 +15,10 @@ var Scene_Asset_Sprite = new Class({
 		
 	},
 	
+	render: function(context, x, y) {
+		context.drawImage(this.image, x, y);
+	},
+	
 	load: function(src, callback) {
 		this.src = src;
 		
