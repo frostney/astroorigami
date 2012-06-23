@@ -34,6 +34,21 @@ astro.inventory.refreshInventory = function () {
 		content += '<div class="item" rel="'+index+'" title="'+elem.name+'"><div class="image"><img src="assets/images/icons/'+index+'.png" style="width: 100%; height:100%"/></div><div class="button useItem">Use</div></div>';		
 	});
 	$('.inventory').html(content);
+	
+		$('.inventory .item .image').draggable({ 
+		opacity: 0.7,
+		helper: 'clone',
+		cancle: 'button',
+		revert: 'invalid'
+	});
+	
+	$(".inventory .item").droppable({
+		activeClass: "ui-state-hover",
+		hoverClass: "ui-state-active",
+		drop: function( event, ui ) {
+			astro.inventory.useItem(ui.draggable.parent().attr('rel'), $(this).attr('rel'));
+		}
+	});
 };
 
 

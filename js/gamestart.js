@@ -56,20 +56,6 @@ $(document).ready(function() {
 
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
-	$('.inventory .item .image').draggable({ 
-		opacity: 0.7,
-		helper: 'clone',
-		cancle: 'button',
-		revert: 'invalid'
-	});
-	
-	$(".inventory .item").droppable({
-		activeClass: "ui-state-hover",
-		hoverClass: "ui-state-active",
-		drop: function( event, ui ) {
-			astro.inventory.useItem(ui.draggable.parent().attr('rel'), $(this).attr('rel'));
-		}
-	});
 	
 	$('.inventory').on('click', '.useItem', function() {
 		alert('using item');
