@@ -21,16 +21,28 @@ $(document).ready(function() {
 		Lyria.SceneManager.render();
 		Lyria.SceneManager.update(0);
 	})();
-
 	
-	var loop = new Scene_Loop();
+	window.canvasEngine = {};
 	
-    var sceneGraph = new Scene_SceneGraph();
+	var loop = window.canvasEngine.loop =  new Scene_Loop();
+    var sceneGraph = window.canvasEngine.sceneGraph = new Scene_SceneGraph();
+    var viewport = window.canvasEngine.viewport = new Scene_RenderTarget_Viewport($('#viewport'), sceneGraph);
     
-    var viewport = new Scene_RenderTarget_Viewport($('#viewport'), sceneGraph);
+    
+    
+    var StarAnimation = new Scene_Asset_Animation(1, 5);
+    StarAnimation.load('/images/star1.png', function(StarAnimation) {
+    	for(var i = 0; i < 10; i++) {
+        	var obj = new Game_Star(StarAnimation);
+        	obj.position.x = 800*Math.random();
+        	obj.position.y = 100*Math.random() + 10;
+        	sceneGraph.add(obj);
+        }
+    });
+    
+    
     
     var FireflyAnimation = new Scene_Asset_Animation(1, 6);
-    
     FireflyAnimation.load('/images/firefly.png', function(FireflyAnimation) {
     	for(var i = 0; i < 10; i++) {
         	var obj = new Game_Firefly(FireflyAnimation);
@@ -38,12 +50,14 @@ $(document).ready(function() {
         }
     });
     
-    loop.start();
     
+    
+    
+    
+    loop.start();
     loop.addTask(function(loop) {
     	sceneGraph.update(loop);
     }, 33);
-    
     loop.addTask(function(loop) {
     	viewport.render(loop);
     }, 33);
