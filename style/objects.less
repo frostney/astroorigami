@@ -1,9 +1,30 @@
+@puzzle1: "puzzle1";
+@puzzle2: "puzzle2";
+@puzzle3: "puzzle3";
+
 .object {
   position: absolute;
+  display: block;
   
-}
-
-#test {
-  width: 64px;
-  height: 64px;
+  &.pinwheel {
+    @objectName: "pinwheel";
+    .transition(all, 1s, linear, 0s);
+    
+    &.small {
+      .square(87px);
+      background-image: url("../@{pathImages}/@{puzzle2}/@{objectName}_small.png");
+    }
+    
+    &.medium {
+      .square(106px);
+      background-image: url("../@{pathImages}/@{puzzle2}/@{objectName}_medium.png");
+    }
+    
+    &.big {
+      .square(138px);
+      background-image: url("../@{pathImages}/@{puzzle2}/@{objectName}_big.png");
+    }
+    
+    
+  }
 }

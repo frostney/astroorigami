@@ -19,7 +19,19 @@ function(sender, localization) {
 		});
 	}
 	
+	var angle = 0;
+	
+	function update(dt) {
+		angle++;
+		if (angle == 360) {
+			angle = 0;
+		}
+		
+		$('.pinwheel').rotate(angle);
+	}
+	
 	return {
-		backgrounds: backgrounds
+		backgrounds: backgrounds,
+		update: update
 	}
 }
