@@ -8,6 +8,7 @@ window.setID = function(object) {
 
 $(document).ready(function() {
 
+	Lyria.SceneManager.add(Lyria.Scene('intro'));
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle1'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle2'));

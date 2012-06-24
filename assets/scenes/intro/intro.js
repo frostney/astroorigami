@@ -1,8 +1,8 @@
 function(sender, localization) {
 	
-	var backgrounds = [];
+	console.log(sender);
 	
 	return {
-		backgrounds: backgrounds
+		test: "Hallo"
 	}
 }
