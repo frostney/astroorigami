@@ -8,7 +8,7 @@ function(sender, localization) {
 	renderTaskID = null;
 	
 	function onSceneActive() {
-
+		$('.character').removeClass('hidden');
 		// set character into the beginning of the scene
 		var scenePos = $('#viewport').offset();
 		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
