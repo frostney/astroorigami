@@ -55,7 +55,7 @@ $(document).ready(function() {
 		astro.dialog.turnPage();
 	});
 	
-	$('#pickup .button').on('click', function() {
+	$('#pickup').on('click', function() {
 		// stop character movement
 		if (interval) {
 			window.canvasEngine.loop.removeTask(interval);
@@ -77,7 +77,7 @@ $(document).ready(function() {
 		});
 	});
 	
-	$('#talk .button').on('click', function() {
+	$('#talk').on('click', function() {
 		// stop character movement
 		if (interval) {
 			window.canvasEngine.loop.removeTask(interval);
