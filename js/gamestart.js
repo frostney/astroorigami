@@ -32,12 +32,15 @@ $(document).ready(function() {
 		Lyria.SceneManager.update(0);
 	})();
 
+	/*$('.character').removeClass('hidden');
+	astro.inventory.addItem('scissors');
+	astro.inventory.addItem('rope');
+	astro.inventory.addItem('flowerPot');*/
+	
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
 	
 	$('.inventory').on('click', '.useItem', function() {
-		alert('using item');
-		// TODO pass element where player is standing currently
 		var character = $('#viewport .character:visible');
 		var relItem = $(this).parent().attr('rel');
 		$('.interactableObj:visible,.interactableNpc:visible').each(function(index) {

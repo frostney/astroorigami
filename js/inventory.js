@@ -70,7 +70,12 @@ astro.inventory.itemCatalogue = {
 		'name' : 'Rope',
 		'use' : {
 			'cactus' : function () {
-				//TODO change state of cactus
+				if ($('.interactableObj[rel=cactus]').attr('state') == 'watered') {
+					astro.inventory.removeItem('rope');
+					$('.interactableObj[rel=cactus]').attr('state', 'roped');
+					astro.inventory.addItem('ticket');
+					$('body').trigger('sthWasPickedUp');
+				}
 			},
 			'noUse' : function() {
 				alert('cant use')
@@ -81,7 +86,10 @@ astro.inventory.itemCatalogue = {
 		'name' : 'Scissors',
 		'use' : {
 			'cactus' : function () {
-				//TODO change state of cactus
+				if ($('.interactableObj[rel=cactus]').attr('state') == 'uncut') {
+					astro.inventory.removeItem('scissors');
+					$('.interactableObj[rel=cactus]').attr('state', 'cut');
+				}
 			},
 			'pinWheelTree' : function () {
 				astro.inventory.addItem('flowerPot');
@@ -114,8 +122,11 @@ astro.inventory.itemCatalogue = {
 				astro.inventory.addItem('flowerPotWater');
 			},
 			'cactus' : function () {
-				astro.inventory.removeItem('flowerPot');
-				astro.inventory.addItem('flowerPotCactus');
+				if ($('.interactableObj[rel=cactus]').attr('state') == 'cut') {
+					astro.inventory.removeItem('flowerPot');
+					astro.inventory.addItem('flowerPotCactus');
+					$('.interactableObj[rel=cactus]').attr('state', 'watered');
+				}
 			},
 			'noUse' : function() {
 				alert('cant use')
@@ -128,7 +139,8 @@ astro.inventory.itemCatalogue = {
 			'smallGuy' : function() {
 				astro.inventory.removeItem('flowerPotCactus');
 				// increase npc state
-				astro.npc.content['smallGuy'].state++;
+				astro.npc.content['smallGuy'].state = 3;
+				astro.dialog.startDialog('smallGuy');
 			},
 			'noUse' : function() {
 				alert('cant use')
