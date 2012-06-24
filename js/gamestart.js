@@ -32,7 +32,6 @@ $(document).ready(function() {
 		Lyria.SceneManager.update(0);
 	})();
 
-
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
 	
@@ -41,7 +40,7 @@ $(document).ready(function() {
 		// TODO pass element where player is standing currently
 		var character = $('#viewport .character:visible');
 		var relItem = $(this).parent().attr('rel');
-		$('.interactableObj:visible').each(function(index) {
+		$('.interactableObj:visible,.interactableNpc:visible').each(function(index) {
 		  	if (hitTest(character, $(this))) {
 		  		var relObj = $(this).attr('rel');
 		  		astro.inventory.useItem(relItem, relObj);
@@ -91,6 +90,9 @@ $(document).ready(function() {
 		  		if (rel == 'sceneChange') {
 		  			window.canvasEngine.sceneGraph.clear();
 		  			Lyria.SceneManager.show($(this).attr('next'));
+		  		} else if (rel == 'tree') {
+		  			astro.inventory.addItem('scissors');
+		  			astro.inventory.addItem('cherries');
 		  		} else {
 		  			astro.dialog.startDialog(rel);
 		  		}
@@ -108,11 +110,13 @@ $(document).ready(function() {
 	var newCharPos = scenePos.left + 10;
 	var interval;
 	$('#viewport').live('click', function(event) {
+		if (interval) {
+			window.canvasEngine.loop.removeTask(interval);
+		}
+			
 		// just listen for clicks if character is visible
-		if($('.character').is(':visible')) {
-			if (interval) {
-				window.canvasEngine.loop.removeTask(interval);
-			}
+		if ($('.character').is(':visible')) {
+
 			newCharPos = event.pageX;
 			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
 				

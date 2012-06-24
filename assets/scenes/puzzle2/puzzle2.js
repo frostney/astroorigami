@@ -47,6 +47,17 @@ function(sender, localization) {
 		        }
 		    });
 		}).delay(100);
+		
+		// check if sth was picked up and if player has everything for this scene give him the possibility to go to the next scene
+		$('body').off('sthWasPickedUp');
+		$('body').on('sthWasPickedUp', function() {
+			console.log('sth picked up')
+			// check if player has needed items in inventory
+			if (astro.inventory.content['pinWheel']) {
+				console.log('showSceneChange')
+				$('#puzzle2 .interactableNpc[rel=sceneChange]').removeClass('hidden');
+			}
+		});
 	}
 	
 	function onSceneDeactived() {
