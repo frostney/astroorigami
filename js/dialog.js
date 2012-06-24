@@ -58,7 +58,7 @@ astro.dialog.content = {
 	'strongGuy' : {
 		0 : {
 			'precondition' : 0,
-			'postcondition' : 2,
+			'postcondition' : 1,
 			'texts' : [{
 				npc : 'You got an interesting hat.',
 				player : 'It’s the biggest hat on this planet!'
