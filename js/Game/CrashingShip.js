@@ -13,8 +13,8 @@ var Game_CrashingShip = new Class({
 	},
 	
 	event_start: function() {
-		this.position.x = 800;
-		this.position.y = - this.sprite.height + 50;
+		this.position.x = 650;
+		this.position.y = - this.sprite.height + 100;
 		this.mode = 'start';
 	},
 	
@@ -34,7 +34,7 @@ var Game_CrashingShip = new Class({
 		
 		window.setTimeout(function() {
 			self.event_leave();
-		}, 5000);
+		}, 3000);
 	},
 	
 	update_wait: function(sceneGraph) {

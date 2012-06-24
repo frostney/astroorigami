@@ -17,28 +17,21 @@ function(sender, localization) {
 	
 	function onSceneActive() {
 		(function() {
-			var viewport = new Scene_RenderTarget_Viewport($('#intro .background:first'), window.canvasEngine.sceneGraph);
+			var viewport = new Scene_RenderTarget_Viewport($('#intro2 .background:first'), window.canvasEngine.sceneGraph);
 			renderTaskID = window.canvasEngine.loop.addTask(function(loop) {
 		    	viewport.render(loop);
 		    }, 33);
 			
-		    var ShipSprite = new Scene_Asset_Sprite();
-		    ShipSprite.load(Lyria.Resource.name('spazeship.png', 'image'), function(ShipSprite) {
-	        	var obj = new Game_CrashingShip(ShipSprite);
-	        	window.canvasEngine.sceneGraph.add(obj);
-		    });
-		    
-		    console.log('test');
-		    
 		    $('#intro2').on('click', function() {
-		    	Lyria.SceneManager.show('puzzle1');
+		    	window.canvasEngine.loop.removeTask(renderTaskID);
+				window.canvasEngine.sceneGraph.clear();
+		    	Lyria.SceneManager.show('startScene');
 		    });
 		    
 		}).delay(100);
 	}
 	
 	function onSceneDeactived() {
-		loop.removeTask(renderTaskID);
 	}
 	
 	function update() {

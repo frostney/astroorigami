@@ -24,7 +24,7 @@ $(document).ready(function() {
 	Lyria.SceneManager.add(Lyria.Scene('puzzle3'));
 	Lyria.SceneManager.add(Lyria.Scene('endScene'));
 
-	Lyria.SceneManager.show('startScene');
+	Lyria.SceneManager.show('intro');
 
 	(function animLoop() {
 		requestAnimFrame(animLoop);
@@ -56,6 +56,10 @@ $(document).ready(function() {
 	});
 	
 	$('#pickup .button').on('click', function() {
+		// stop character movement
+		if (interval) {
+			window.canvasEngine.loop.removeTask(interval);
+		}
 		console.log('pickup button click')
 		var character = $('#viewport .character:visible');
 		$('.interactableElem:visible').each(function(index) {
@@ -74,6 +78,10 @@ $(document).ready(function() {
 	});
 	
 	$('#talk .button').on('click', function() {
+		// stop character movement
+		if (interval) {
+			window.canvasEngine.loop.removeTask(interval);
+		}
 		console.log('talk button click')
 		var character = $('#viewport .character:visible');
 		$('.interactableNpc:visible').each(function(index) {
