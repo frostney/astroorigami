@@ -60,14 +60,14 @@ astro.dialog.content = {
 			'precondition' : 0,
 			'postcondition' : 1,
 			'texts' : [{
-				npc : 'You got an interesting hat.',
-				player : 'It’s the biggest hat on this planet!'
+				npc : 'You look like a weak fellow. ',
+				player : 'You got an interesting hat.'
+			},{
+				npc : 'It’s the biggest hat on this planet!',
+				player : 'I could use your hat to rebuild my spaceship.'
 			}, {
-				npc : 'I could use your hat to rebuild my spaceship.',
-				player : 'The strongest man needs the biggest hat. It’s my hat. I would never give it to someone like… you!'
-			}, {
-				npc : 'Could you please show me how strong you are?',
-				player : 'I am the record holder on the high striker. One hit should be enough for an impression of my strength.'
+				npc : 'The strongest man needs the biggest hat. It’s my hat. I would never give it to someone like… you!',
+				player : 'Could you please show me how strong you are?'
 			}]
 		}
 	},
@@ -76,11 +76,11 @@ astro.dialog.content = {
 			'precondition' : 0,
 			'postcondition' : 1,
 			'texts' : [{
-				npc : 'Why do you cry?',
-				player : 'I can’t sleep.'
+				npc : 'Uhhh...sneef...uhh.',
+				player : 'Why do you cry?'
 			}, {
-				npc : 'Why can’t you sleep?',
-				player : 'I lost my pillow.'
+				npc : 'I lost my pillow. So I can’t sleep.',
+				player : 'I will find your pillow.'
 			}]
 		},
 		2 : {
