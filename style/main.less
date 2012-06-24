@@ -68,6 +68,18 @@ body, html {
     background-image: url("../@{pathImages}/@{puzzle1}/haudenlukas.png");
   }
   
+  &.haudenlukas-ball {
+    background-image: url("../@{pathImages}/@{puzzle1}/haudenlukas_ball.png");
+    left: 255px;
+    top: 330px;
+    .square(28px);
+    .transition(all, 200ms, ease-in, 0s);
+    
+    &.hit {
+      top: 220px;
+    }
+  }
+  
   &.tent {
     background-image: url("../@{pathImages}/@{puzzle1}/tent.png");
   }
