@@ -6,12 +6,13 @@
 
 .dialog {
   @dialogWidth: 400px;
-  @dialogHeight: 80px;
+  @dialogHeight: 90px;
   
   position: absolute;
+  border: 1px solid #000;
   .box-shadow(0px, 0px, @shadowBlur, #fff);
   .border-radius(@borderRadius);
-  .opacity(0.8);
+  .opacity(0.9);
   padding: @borderRadius;
   left: 50%;
   width: @dialogWidth;
@@ -41,8 +42,9 @@
   .button {
     font-weight: bold;
     position: absolute;
-    left: 20%;
-    width: 60%;
+    text-align: center;
+    left: 10%;
+    width: 80%;
     bottom: 8px;
     
     border: 1px solid #666;
