@@ -141,6 +141,11 @@ $(document).ready(function() {
 			}, 33);
 		}
 	});
+	
+	$('.interactableNpc[rel=sceneChange]:visible').live('click', function() {
+		window.canvasEngine.sceneGraph.clear();
+		Lyria.SceneManager.show($(this).attr('next'));
+	});
 
 }); 
 
