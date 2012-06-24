@@ -29,6 +29,8 @@ function(sender, localization) {
 			// check if player has needed items in inventory
 			if (astro.npc.content['strongGuy'].state == 1) {
 				$('#puzzle1 .interactableElem[rel=partyHat]').removeClass('hidden');
+				$('.object.haudenlukas-ball').addClass('hit');
+				$('#viewport').addClass('animated').addClass('shake');
 			}
 		});
 	}
