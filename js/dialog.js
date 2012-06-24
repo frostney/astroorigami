@@ -33,8 +33,8 @@ astro.dialog.turnPage = function() {
 			buttonElem.attr('page', page);
 			nameElem.html(astro.npc.content[astro.dialog.currentNpc].name);
 			textElem.css('color', astro.npc.content[astro.dialog.currentNpc].textColor);
-			textElem.html(textObj.texts[page].npc);
-			buttonElem.html(textObj.texts[page].player);
+			textElem.html(textObj.texts[page].npc || '');
+			buttonElem.html(textObj.texts[page].player || 'Bye');
 			$('.dialog').removeClass('hidden');
 		} else {
 
@@ -59,14 +59,35 @@ astro.dialog.content = {
 			'precondition' : 0,
 			'postcondition' : 1,
 			'texts' : [{
-				npc : 'You look like a weak fellow. ',
-				player : 'You got an interesting hat.'
-			},{
-				npc : 'It’s the biggest hat on this planet!',
-				player : 'I could use your hat to rebuild my spaceship.'
-			}, {
-				npc : 'The strongest man needs the biggest hat. It’s my hat. I would never give it to someone like… you!',
-				player : 'Could you please show me how strong you are?'
+					npc : 'Are you talking to me, white suit?',
+					player : 'Yes, Sir.'
+				},{
+					npc : 'I\'m sorry, I can\'t talk to you. I\'m busy being the strongest guy around.',
+					player : 'If you\'re so strong, maybe you can help me rebuild my rocket?'
+				}, {
+					npc : 'I don\'t think so.',
+					player : 'All I\'d need is your fancy party hat.'
+	
+				}, {    npc : 'What for?',
+					player : 'It\'d work perfectly as a body for my rocket.'
+	
+				}, {	npc : 'You know, I\'m not only the strongest but also the coolest guy around.',
+					player : 'I\'ve noticed.'
+	
+				}, {	npc : 'If I\'m giving away my hat, my integrity is destroyed. That\'s a problem.',
+					player : 'Well, I totally understand. Although I think your plain hair is pretty cool as well.',
+	
+				}, {	npc : 'It is, isn\'t it? I\'m strong, beautiful and own the best hat ever.',
+					player : 'I can see your simplistic beauty, and your hat is quite contemporary. But can you prove that your muscles are actually bigger than your mouth?',
+	
+				}, {	npc : 'You\'re a chump if you won\'t believe my skill. Watch me.'
+				}
+			]
+		},
+		1 : {
+			'postcondition' : 1,
+			'texts' : [{
+				npc : 'I\'m not talking to you anymore, fool.'
 			}]
 		}
 	},

@@ -8,7 +8,6 @@ function(sender, localization) {
 	renderTaskID = null;
 
 	function onSceneActive() {
-		
 		(function() {
 			var viewport = new Scene_RenderTarget_Viewport($('#puzzle1'), window.canvasEngine.sceneGraph);
 			renderTaskID = window.canvasEngine.loop.addTask(function(loop) {
