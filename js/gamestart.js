@@ -176,6 +176,9 @@ function hitTest(a, b) {
 		for (a=0;a<audiochannels.length;a++) {
 			thistime = new Date();
 			if (audiochannels[a]['finished'] < thistime.getTime()) {			// is this channel finished?
+				if (!document.getElementById(s) || !document.getElementById(s).duration) {
+					return;
+				}
 				audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000;
 				audiochannels[a]['channel'].src = document.getElementById(s).src;
 				audiochannels[a]['channel'].load();
