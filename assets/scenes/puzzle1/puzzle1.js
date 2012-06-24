@@ -1,7 +1,11 @@
 function(sender, localization) {
 	
+	var backgroundName = 'background';
+	var maxBackgrounds = 7;
+	
 	var backgrounds = [];
 	
+
 	function onSceneActive() {
 		// set character into the beginning of the scene
 		var scenePos = $('#viewport').offset();
@@ -16,6 +20,11 @@ function(sender, localization) {
 				$('#startScene .interactableNpc[rel=sceneChange]').removeClass('hidden');
 			}
 		});
+	}
+
+	for (var i = 0; i < maxBackgrounds; i++) {
+		backgrounds.push(Lyria.Resource.name([sender, backgroundName + i + '.png'].join('/'), 'image'));
+
 	}
 	
 	return {
