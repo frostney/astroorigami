@@ -38,8 +38,21 @@ function(sender, localization) {
 
 	}
 	
+	
+	var angle = 0;
+	
+	function update(dt) {
+		angle += 0.33;
+		if (angle == 360.0) {
+			angle = 0;
+		}
+		
+		$('.ferriswheel').rotate(angle);
+	}
+	
 	return {
-		onSceneActive: onSceneActive,
-		backgrounds: backgrounds
+		backgrounds: backgrounds,
+		update: update,
+		onSceneActive: onSceneActive
 	}
 }

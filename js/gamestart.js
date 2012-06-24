@@ -17,13 +17,14 @@ $(document).ready(function() {
     }, 33);
 
 	Lyria.SceneManager.add(Lyria.Scene('intro'));
+	Lyria.SceneManager.add(Lyria.Scene('intro2'));
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle1'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle2'));
 	Lyria.SceneManager.add(Lyria.Scene('puzzle3'));
 	Lyria.SceneManager.add(Lyria.Scene('endScene'));
 
-	Lyria.SceneManager.show('startScene');
+	Lyria.SceneManager.show('intro');
 
 	(function animLoop() {
 		requestAnimFrame(animLoop);
