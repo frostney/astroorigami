@@ -16,6 +16,8 @@ $(document).ready(function() {
     	sceneGraph.update(loop);
     }, 33);
 
+	Lyria.SceneManager.add(Lyria.Scene('gametitle'));
+	Lyria.SceneManager.add(Lyria.Scene('credits'));
 	Lyria.SceneManager.add(Lyria.Scene('intro'));
 	Lyria.SceneManager.add(Lyria.Scene('intro2'));
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
@@ -24,7 +26,7 @@ $(document).ready(function() {
 	Lyria.SceneManager.add(Lyria.Scene('puzzle3'));
 	Lyria.SceneManager.add(Lyria.Scene('endScene'));
 
-	Lyria.SceneManager.show('intro');
+	Lyria.SceneManager.show('gametitle');
 
 	(function animLoop() {
 		requestAnimFrame(animLoop);
