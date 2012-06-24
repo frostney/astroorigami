@@ -25,7 +25,7 @@ function(sender, localization) {
 		    $('#intro2').on('click', function() {
 		    	window.canvasEngine.loop.removeTask(renderTaskID);
 				window.canvasEngine.sceneGraph.clear();
-		    	Lyria.SceneManager.show('puzzle1');
+		    	Lyria.SceneManager.show('startScene');
 		    });
 		    
 		}).delay(100);
