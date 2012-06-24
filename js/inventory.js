@@ -55,11 +55,11 @@ astro.inventory.itemCatalogue = {
 	'pillow' : {
 		'name' : 'Pillow',
 		'use' : {
-			'pillowStone' : function () {
-				alert('using pillow with pillowStone')
-				//TODO change state of tallGuy so he accepts the sleeping area
+			'tallGuy' : function() {
+				astro.inventory.removeItem('pillow');
+				// change state of tallGuy so he accepts the sleeping area
 				astro.npc.content['tallGuy'].state = 2;
-				
+				astro.dialog.startDialog('tallGuy');
 			},
 			'noUse' : function() {
 				alert('cant use')
@@ -84,6 +84,8 @@ astro.inventory.itemCatalogue = {
 				//TODO change state of cactus
 			},
 			'pinWheelTree' : function () {
+				astro.inventory.addItem('flowerPot');
+				astro.npc.content['tallGuy'].state = 7;
 				//TODO change state of pin wheel tree
 			},
 			'noUse' : function() {
@@ -94,9 +96,10 @@ astro.inventory.itemCatalogue = {
 	'cherries' : {
 		'name' : 'Cherries',
 		'use' : {
-			'flowerPotWater' : function() {
+			'tallGuy' : function() {
 				astro.inventory.removeItem('cherries');
-				astro.inventory.addItem('flowerPotWater');
+				astro.npc.content['tallGuy'].state = 4;
+				astro.dialog.startDialog('tallGuy');
 			},
 			'noUse' : function() {
 				alert('cant use')
@@ -142,7 +145,10 @@ astro.inventory.itemCatalogue = {
 				astro.inventory.removeItem('flowerPotWater');
 				astro.inventory.addItem('flowerPot');
 				// increase npc state
-				astro.npc.content['tallGuy'].state++;
+				astro.inventory.addItem('pinWheel');
+				$('body').trigger('sthWasPickedUp');
+				astro.npc.content['tallGuy'].state = 7;
+				astro.dialog.startDialog('tallGuy');
 			},
 			'noUse' : function() {
 				alert('cant use')

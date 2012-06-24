@@ -22,13 +22,12 @@ astro.dialog.startDialog = function(npcId) {
 
 astro.dialog.turnPage = function() {
 	if (!$.isEmptyObject(astro.dialog.currentDialog)) {
-
 		var buttonElem = $('.dialog .button');
 		var nameElem = $('.dialog .name');
 		var textElem = $('.dialog .text');
 		var textObj = astro.dialog.currentDialog;
 		var page = buttonElem.attr('page');
-		page = isNaN(page) ? 0 : (parseInt(page) + 1);
+		page = (isNaN(page) || !page) ? 0 : (parseInt(page) + 1);
 		// check if this page exists if true, then show data of this page
 		if (textObj.texts[page]) {
 			buttonElem.attr('page', page);
@@ -41,7 +40,7 @@ astro.dialog.turnPage = function() {
 
 			// if there are no more pages, close dialog and set npc to postcondition
 			$('.dialog').addClass('hidden');
-			buttonElem.attr('page', 0);
+			buttonElem.attr('page', '');
 			astro.npc.content[astro.dialog.currentNpc].state = textObj.postcondition;
 			astro.dialog.currentDialog = {};
 
