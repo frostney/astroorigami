@@ -17,6 +17,9 @@ function(sender, localization) {
 	//background.push();
 	
 	function onSceneActive() {
+		play_multi_sound('audio_scene2', 0.3, false);
+		
+		play_multi_sound('audio_scene3', 0.2, true);
 		// set character into the beginning of the scene
 		var scenePos = $('#viewport').offset();
 		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});

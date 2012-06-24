@@ -7,7 +7,9 @@ window.setID = function(object) {
 },
 
 $(document).ready(function() {
-	play_multi_sound('audio_background');
+	play_multi_sound('audio_background', 0.1, true);
+	
+	
 	window.canvasEngine = {};
 	var loop = window.canvasEngine.loop =  new Scene_Loop();
     var sceneGraph = window.canvasEngine.sceneGraph = new Scene_SceneGraph();
@@ -170,15 +172,26 @@ function hitTest(a, b) {
 		audiochannels[a]['channel'] = new Audio();						// create a new audio object
 		audiochannels[a]['finished'] = -1;							// expected end time for this channel
 	}
-	function play_multi_sound(s) {
-		for (a=0;a<audiochannels.length;a++) {
+	function play_multi_sound(s, volume, play) {
+		for (var a=0; a<audiochannels.length; a++) {
 			thistime = new Date();
 			if (audiochannels[a]['finished'] < thistime.getTime()) {			// is this channel finished?
 				audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000;
 				audiochannels[a]['channel'].src = document.getElementById(s).src;
 				audiochannels[a]['channel'].load();
-				audiochannels[a]['channel'].play();
+				audiochannels[a]['channel'].volume = volume;
+				if (play) {
+					audiochannels[a]['channel'].play();
+				} else {
+					audiochannels[a]['channel'].pause();
+				}
+				
 				break;
+			} else {
+				// still playing?
+				if (!play) {
+					audiochannels[a]['channel'].pause();
+				}
 			}
 		}
 	}

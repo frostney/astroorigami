@@ -8,6 +8,8 @@ function(sender, localization) {
 	renderTaskID = null;
 
 	function onSceneActive() {
+		play_multi_sound('audio_scene1', 0.3, false);
+		play_multi_sound('audio_scene2', 0.1, true);
 		(function() {
 			var viewport = new Scene_RenderTarget_Viewport($('#puzzle1'), window.canvasEngine.sceneGraph);
 			renderTaskID = window.canvasEngine.loop.addTask(function(loop) {
