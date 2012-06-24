@@ -89,6 +89,7 @@ $(document).ready(function() {
 		  	if (hitTest(character, $(this))) {
 		  		var rel = $(this).attr('rel');
 		  		if (rel == 'sceneChange') {
+		  			window.canvasEngine.sceneGraph.clear();
 		  			Lyria.SceneManager.show($(this).attr('next'));
 		  		} else {
 		  			astro.dialog.startDialog(rel);

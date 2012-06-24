@@ -21,7 +21,7 @@ function(sender, localization) {
 			
 		    var StarAnimation = new Scene_Asset_Animation(1, 5);
 		    StarAnimation.load(Lyria.Resource.name('star1.png', 'image'), function(StarAnimation) {
-		    	for(var i = 0; i < 10; i++) {
+		    	for(var i = 0; i < 25; i++) {
 		        	var obj = new Game_Star(StarAnimation);
 		        	obj.position.x = 800*Math.random();
 		        	obj.position.y = 100*Math.random() + 10;
@@ -29,6 +29,15 @@ function(sender, localization) {
 		        }
 		    });
 		    
+		    var fireflies = [];
+		    
+		    $('#startScene').on('mousemove', function(event) {
+		    	
+		    	for(var i = 0; i < fireflies.length; i++) {
+		    		fireflies[i].center = new Scene_Vector(event.offsetX, event.offsetY);
+		    	}
+		    	
+		    });
 		    
 		    
 		    var FireflyAnimation = new Scene_Asset_Animation(1, 6);
@@ -36,6 +45,7 @@ function(sender, localization) {
 		    	for(var i = 0; i < 10; i++) {
 		        	var obj = new Game_Firefly(FireflyAnimation);
 		        	window.canvasEngine.sceneGraph.add(obj);
+		        	fireflies.push(obj);
 		        }
 		    });
 		}).delay(100);
@@ -52,7 +62,8 @@ function(sender, localization) {
 	}
 	
 	function onSceneDeactived() {
-		
+		window.canvasEngine.loop.removeTask(renderTaskID);
+		window.canvasEngine.sceneGraph.clear();
 	}
 	
 	function update() {

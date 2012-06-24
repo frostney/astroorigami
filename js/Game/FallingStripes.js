@@ -6,6 +6,8 @@ var Game_FallingStripes = new Class({
 	
 	resetPosition: new Scene_Vector(0,0),
 	
+	moveSpeedMod: 0,
+	
 	initialize : function(sprite) {
 		this.sprite = sprite;
 		
@@ -19,15 +21,19 @@ var Game_FallingStripes = new Class({
 		this.resetPosition.x = this.position.x;
 		this.resetPosition.y = this.position.y;
 		
+		this.moveSpeedMod = Math.random();
+		
+		for(var i = 0; i < 50; i++) {
+			this.update({timeDelta: 30});
+		}
+		
 	},
 	
 	update: function(sceneGraph) {
 		this.parent(sceneGraph);
 		
-		var t = Math.random();
-		
-		this.position.x += sceneGraph.timeDelta * .5 * t;
-		this.position.y -= sceneGraph.timeDelta * .5 * t;
+		this.position.x += sceneGraph.timeDelta * .5 * this.moveSpeedMod;
+		this.position.y -= sceneGraph.timeDelta * .5 * this.moveSpeedMod;
 		
 		if(this.position.x > 800 || this.position.y < 0) {
 			this.position.x = this.resetPosition.x;
