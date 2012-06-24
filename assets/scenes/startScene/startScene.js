@@ -10,6 +10,7 @@ function(sender, localization) {
 	function onSceneActive() {
 		play_multi_sound('audio_scene1', 0.3, true);
 		$('.character').removeClass('hidden');
+		$('.status').removeClass('hidden');
 		// set character into the beginning of the scene
 		var scenePos = $('#viewport').offset();
 		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});

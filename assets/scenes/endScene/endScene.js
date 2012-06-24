@@ -19,8 +19,10 @@ function(sender, localization) {
 		$('body').off('sthWasPickedUp');
 		$('body').on('sthWasPickedUp', function() {
 			console.log('sth picked up')
+			var rocket = $('.interactableObj[rel=rocket]');
 			// check if player has needed items in inventory
-			if (parseInt($('.interactableObj[rel=rocket]').attr('state')) >= 3) {
+			if (parseInt(rocket.attr('state')) >= 3) {
+				rocket.css('background', 'url(assets/images/spazeship.png)')
 				Lyria.SceneManager.show('credits');
 				$('.character').hide();
 			}
