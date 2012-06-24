@@ -9,7 +9,20 @@ function(sender, localization) {
 		backgrounds.push(Lyria.Resource.name([sender, backgroundName + i + '.png'].join('/'), 'image'));
 	}
 	
+	
+	var angle = 0;
+	
+	function update(dt) {
+		angle += 0.33;
+		if (angle == 360.0) {
+			angle = 0;
+		}
+		
+		$('.ferriswheel').rotate(angle);
+	}
+	
 	return {
-		backgrounds: backgrounds
+		backgrounds: backgrounds,
+		update: update
 	}
 }
