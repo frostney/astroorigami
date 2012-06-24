@@ -61,14 +61,99 @@ astro.dialog.content = {
 			'postcondition': 1,
 			'texts' : [
 				{
-					npc : 'Hello <b>how</b> are you',
-					player: 'Good and you'
+					npc : 'You got an interesting hat.',
+					player: 'It’s the biggest hat on this planet!'
 				},
 				{
-					npc : '2',
-					player: '3'
+					npc : 'I could use your hat to rebuild my spaceship.',
+					player: 'The strongest man needs the biggest hat. It’s my hat. I would never give it to someone like… you!'
+				},
+                {
+					npc : 'Could you please show me how strong you are?',
+					player: 'I am the record holder on the high striker. One hit should be enough for an impression of my strength.'
 				}
 			]
 		}
 	},
+	'tallGuy' : {
+		0 : {
+			'precondition' : 0,
+			'postcondition': 1,
+			'texts' : [
+				{
+					npc : 'Why do you cry?',
+					player: 'I can’t sleep.'
+				},
+				{
+					npc : 'Why can’t you sleep?',
+					player: 'I lost my pillow.'
+				}
+			]
+		},
+        1 : {
+             'precondition' : 1,
+             'postcondition' : 2,
+             'texts' : [
+                {
+					npc : 'I still cannot sleep! I am hungry!',
+					player: 'Maybe you should gather some cherries from the tree.'
+				}
+             ]
+        },
+        2:  {
+             'precondition' : 2,
+             'postcondition' : 3,
+             'texts' : [
+                {
+					npc : 'Now I am thirsty. Can’t you give me some water? With some water I finally could… sleep.',
+					player: 'I will bring you some water.'
+				}
+             ]
+           },
+        3:  {
+             'precondition' : 3,
+             'postcondition' : 4,
+             'texts' : [
+                {
+					npc : 'Now I am very… sleepy.',
+					player: 'Good night tall guy.'
+				}
+             ]             
+        }            
+            
+	},
+	'smallGuy' : {
+		0 : {
+			'precondition' : 0,
+			'postcondition': 1,
+			'texts' : [
+				{
+					npc : '<i>…argh…!</i>',
+					player: '???'
+				}
+			]
+		},
+		1 : {
+			'precondition' : 1,
+			'postcondition': 2,
+			'texts' : [
+				{
+					npc : 'You… you saved my life. You are my servant now. I will serve you for the rest of my life!',
+					player: 'Ähmm… thank you. BBut I only have one request. I need a ticket back to earth.'
+				},
+				{
+					npc : 'A ticket to earth? I think the meerkats down the hole do have one. They often tried to sell it to me. But I do have no money… and no… spaceship.',
+					player: 'I have a spaceship.'
+				},
+				{
+					npc : 'Please take me with you. Please!',
+					player: 'I do not have a ticket.'
+				},
+				{
+					npc : 'The meerkats down the hole have a ticket. But the hole is very deep. I can’t get down.',
+					player: 'I will find a way to bring you down the hole.'
+				} 
+			]
+		}
+	}
 };

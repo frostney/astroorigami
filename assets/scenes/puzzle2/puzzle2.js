@@ -17,6 +17,9 @@ function(sender, localization) {
 	//background.push();
 	
 	function onSceneActive() {
+		// set character into the beginning of the scene
+		var scenePos = $('#viewport').offset();
+		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
 		
 		(function() {
 			var viewport = new Scene_RenderTarget_Viewport($('#puzzle2'), window.canvasEngine.sceneGraph);

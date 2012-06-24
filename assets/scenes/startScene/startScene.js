@@ -1,10 +1,17 @@
 function(sender, localization) {
 	
+	var backgroundName = 'background';
+	var maxBackgrounds = 8;
+	
 	var backgrounds = [];
 	
 	renderTaskID = null;
 	
 	function onSceneActive() {
+		// set character into the beginning of the scene
+		var scenePos = $('#viewport').offset();
+		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
+		
 		(function() {
 			var viewport = new Scene_RenderTarget_Viewport($('#startScene'), window.canvasEngine.sceneGraph);
 			renderTaskID = window.canvasEngine.loop.addTask(function(loop) {
@@ -31,6 +38,15 @@ function(sender, localization) {
 		        }
 		    });
 		}).delay(100);
+		
+		// check if sth was picked up and if player has everything for this scene give him the possibility to go to the next scene
+		$('body').off('sthWasPickedUp');
+		$('body').on('sthWasPickedUp', function() {
+			// check if player has needed items in inventory
+			if (astro.inventory.content['pillow'] && astro.inventory.content['rope']) {
+				$('#startScene .interactableNpc[rel=sceneChange]').removeClass('hidden');
+			}
+		});
 	}
 	
 	function onSceneDeactived() {
@@ -39,6 +55,12 @@ function(sender, localization) {
 	
 	function update() {
 		
+	}
+	
+	for (var i = 0; i < maxBackgrounds; i++) {
+		backgrounds.push({
+			filename: Lyria.Resource.name([sender, backgroundName + i + '.png'].join('/'), 'image')
+		});
 	}
 	
 	return {
