@@ -31,13 +31,16 @@ $(document).ready(function() {
 		Lyria.SceneManager.render();
 		Lyria.SceneManager.update(0);
 	})();
-
+/*
+	$('.character').removeClass('hidden');
+	astro.inventory.addItem('pinWheel');
+	astro.inventory.addItem('partyHat');
+	astro.inventory.addItem('ticket');*/
+	
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
 	
 	$('.inventory').on('click', '.useItem', function() {
-		alert('using item');
-		// TODO pass element where player is standing currently
 		var character = $('#viewport .character:visible');
 		var relItem = $(this).parent().attr('rel');
 		$('.interactableObj:visible,.interactableNpc:visible').each(function(index) {
