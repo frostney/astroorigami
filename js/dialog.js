@@ -24,6 +24,7 @@ astro.dialog.turnPage = function() {
 	if (!$.isEmptyObject(astro.dialog.currentDialog)) {
 
 		var buttonElem = $('.dialog .button');
+		var nameElem = $('.dialog .name');
 		var textElem = $('.dialog .text');
 		var textObj = astro.dialog.currentDialog;
 		var page = buttonElem.attr('page');
@@ -31,6 +32,7 @@ astro.dialog.turnPage = function() {
 		// check if this page exists if true, then show data of this page
 		if (textObj.texts[page]) {
 			buttonElem.attr('page', page);
+			nameElem.html(astro.npc.content[astro.dialog.currentNpc].name);
 			textElem.css('color', astro.npc.content[astro.dialog.currentNpc].textColor);
 			textElem.html(textObj.texts[page].npc);
 			buttonElem.html(textObj.texts[page].player);
