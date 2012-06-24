@@ -18,6 +18,8 @@ $(document).ready(function() {
     	sceneGraph.update(loop);
     }, 33);
 
+	Lyria.SceneManager.add(Lyria.Scene('gametitle'));
+	Lyria.SceneManager.add(Lyria.Scene('credits'));
 	Lyria.SceneManager.add(Lyria.Scene('intro'));
 	Lyria.SceneManager.add(Lyria.Scene('intro2'));
 	Lyria.SceneManager.add(Lyria.Scene('startScene'));
@@ -26,7 +28,7 @@ $(document).ready(function() {
 	Lyria.SceneManager.add(Lyria.Scene('puzzle3'));
 	Lyria.SceneManager.add(Lyria.Scene('endScene'));
 
-	Lyria.SceneManager.show('intro');
+	Lyria.SceneManager.show('gametitle');
 
 	(function animLoop() {
 		requestAnimFrame(animLoop);
@@ -176,6 +178,9 @@ function hitTest(a, b) {
 		for (var a=0; a<audiochannels.length; a++) {
 			thistime = new Date();
 			if (audiochannels[a]['finished'] < thistime.getTime()) {			// is this channel finished?
+				if (!document.getElementById(s) || !document.getElementById(s).duration) {
+					return;
+				}
 				audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000;
 				audiochannels[a]['channel'].src = document.getElementById(s).src;
 				audiochannels[a]['channel'].load();

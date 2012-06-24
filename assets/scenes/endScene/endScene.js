@@ -21,8 +21,8 @@ function(sender, localization) {
 			console.log('sth picked up')
 			// check if player has needed items in inventory
 			if (parseInt($('.interactableObj[rel=rocket]').attr('state')) >= 3) {
-				console.log('showSceneChange')
-				alert('GAME OVER')
+				Lyria.SceneManager.show('credits');
+				$('.character').hide();
 			}
 		});
 	}

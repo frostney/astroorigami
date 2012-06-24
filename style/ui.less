@@ -56,12 +56,12 @@
     padding: @borderRadius;
     
     &:hover {
-      background: @highlightColor;
-      color: #bb0;
+      background: lighten(@highlightColor, 10%);
+      color: #000;
     }
     
     &:active {
-      background: @clickColor;
+      background: lighten(@clickColor, 10%);
     }
   }
   
