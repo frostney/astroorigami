@@ -30,6 +30,10 @@ function(sender, localization) {
 		    
 		    console.log('test');
 		    
+		    $('#intro').on('click', function() {
+		    	Lyria.SceneManager.show('intro2');
+		    });
+		    
 		}).delay(100);
 	}
 	
