@@ -30,10 +30,10 @@ function(sender, localization) {
 		    
 		    var StripeSprite = new Scene_Asset_Sprite();
 		    StripeSprite.load(Lyria.Resource.name('fallingStripes.png', 'image'), function(StripeSprite) {
-	        	var obj = new Game_FallingStripes(StripeSprite);
-	        	window.canvasEngine.sceneGraph.add(obj);
-	        	obj.position.x = 700;
-	        	obj.position.y = 200;
+		    	for(var i = 0; i < 100; i++) {
+		    		var obj = new Game_FallingStripes(StripeSprite);
+		        	window.canvasEngine.sceneGraph.add(obj);
+		    	}
 		    });
 		    
 		    console.log('test');
