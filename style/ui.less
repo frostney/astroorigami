@@ -1,8 +1,8 @@
 @shadowBlur: 8px;
 @borderRadius: 4px;
 
-@highlightColor: #eaea88;
-@clickColor: #baba88;
+@highlightColor: #8888aa;
+@clickColor: darken(@highlightColor, 25%);
 
 .dialog {
   @dialogWidth: 400px;
@@ -43,8 +43,8 @@
     font-weight: bold;
     position: absolute;
     text-align: center;
-    left: 10%;
-    width: 80%;
+    left: 4%;
+    width: 90%;
     bottom: 8px;
     
     border: 1px solid #666;
@@ -57,6 +57,7 @@
     
     &:hover {
       background: @highlightColor;
+      color: #bb0;
     }
     
     &:active {
@@ -125,9 +126,9 @@
       .border-radius(@borderRadius);
       .box-shadow(0px, 0px, @shadowBlur, @shadowColor);
       
-      border: 1px solid #666;
+      border: 1px solid #ddd;
       
-      background: #dadada;
+      background: #151545;
       padding: 4px;
     }
     

@@ -54,7 +54,7 @@ $(document).ready(function() {
 		astro.dialog.turnPage();
 	});
 	
-	$('#pickup .button').on('click', function() {
+	$('#pickup').on('click', function() {
 		// stop character movement
 		if (interval) {
 			window.canvasEngine.loop.removeTask(interval);
@@ -76,7 +76,7 @@ $(document).ready(function() {
 		});
 	});
 	
-	$('#talk .button').on('click', function() {
+	$('#talk').on('click', function() {
 		// stop character movement
 		if (interval) {
 			window.canvasEngine.loop.removeTask(interval);
@@ -88,6 +88,7 @@ $(document).ready(function() {
 		  	if (hitTest(character, $(this))) {
 		  		var rel = $(this).attr('rel');
 		  		if (rel == 'sceneChange') {
+		  			window.canvasEngine.sceneGraph.clear();
 		  			Lyria.SceneManager.show($(this).attr('next'));
 		  		} else if (rel == 'tree') {
 		  			astro.inventory.addItem('scissors');
