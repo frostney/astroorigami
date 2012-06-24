@@ -99,25 +99,27 @@ $(document).ready(function() {
 	var newCharPos = scenePos.left + 10;
 	var interval;
 	$('#viewport').live('click', function(event) {
-		if (interval) {
-			window.canvasEngine.loop.removeTask(interval);
-		}
-		newCharPos = event.pageX;
-		interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
-			
-			var delta = loop.timeElapsed;
-			
-			var charCurPosX = $('.character:visible').offset().left;
-			if (charCurPosX > (newCharPos+10)) {
-				$('.character:visible').offset({left : charCurPosX - .2 * delta});
-			} else if (charCurPosX < (newCharPos-10)) {
-				$('.character:visible').offset({left : charCurPosX + .2 * delta});
-			} else {
+		// just listen for clicks if character is visible
+		if($('.character').is(':visible')) {
+			if (interval) {
 				window.canvasEngine.loop.removeTask(interval);
 			}
-			
-		}, 33);
-		
+			newCharPos = event.pageX;
+			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
+				
+				var delta = loop.timeElapsed;
+				
+				var charCurPosX = $('.character:visible').offset().left;
+				if (charCurPosX > (newCharPos+10)) {
+					$('.character:visible').offset({left : charCurPosX - .2 * delta});
+				} else if (charCurPosX < (newCharPos-10)) {
+					$('.character:visible').offset({left : charCurPosX + .2 * delta});
+				} else {
+					window.canvasEngine.loop.removeTask(interval);
+				}
+				
+			}, 33);
+		}
 	});
 	
 }); 
