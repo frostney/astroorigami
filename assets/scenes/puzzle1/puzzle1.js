@@ -5,8 +5,38 @@ function(sender, localization) {
 	
 	var backgrounds = [];
 	
+	renderTaskID = null;
 
 	function onSceneActive() {
+		
+		(function() {
+			var viewport = new Scene_RenderTarget_Viewport($('#puzzle1'), window.canvasEngine.sceneGraph);
+			renderTaskID = window.canvasEngine.loop.addTask(function(loop) {
+		    	viewport.render(loop);
+		    }, 33);
+			
+			
+			 var SmallGuy = new Scene_Asset_Sprite();
+			 SmallGuy.load(Lyria.Resource.name('SmallGuy.png', 'image'), function(SmallGuy) {
+		        	var obj = new Game_Star(SmallGuy);
+		        	obj.position.x = 100;
+		        	obj.position.y = 250;
+		        	window.canvasEngine.sceneGraph.add(obj);
+			    });
+			
+			
+		    var StarAnimation = new Scene_Asset_Animation(1, 5);
+		    StarAnimation.load(Lyria.Resource.name('star1.png', 'image'), function(StarAnimation) {
+		    	for(var i = 0; i < 30; i++) {
+		        	var obj = new Game_Star(StarAnimation);
+		        	obj.position.x = 800*Math.random();
+		        	obj.position.y = 100*Math.random() + 10;
+		        	window.canvasEngine.sceneGraph.add(obj);
+		        }
+		    });
+		}).delay(100);
+		
+		
 		// set character into the beginning of the scene
 		var scenePos = $('#viewport').offset();
 		$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
@@ -43,6 +73,11 @@ function(sender, localization) {
 	
 	var angle = 0;
 	
+	function onSceneDeactived() {
+		window.canvasEngine.loop.removeTask(renderTaskID);
+		window.canvasEngine.sceneGraph.clear();
+	}
+	
 	function update(dt) {
 		angle += 0.33;
 		if (angle == 360.0) {
@@ -55,6 +90,7 @@ function(sender, localization) {
 	return {
 		backgrounds: backgrounds,
 		update: update,
-		onSceneActive: onSceneActive
+		onSceneActive: onSceneActive,
+		onSceneDeactived: onSceneDeactived,
 	}
 }

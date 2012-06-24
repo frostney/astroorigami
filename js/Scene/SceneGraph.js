@@ -55,6 +55,8 @@ var Scene_SceneGraph = new Class({
 		return this.currentBatch;
 	},
 	
-	
+	clear: function() {
+		this.children = {};
+	},
 
 });

@@ -28,9 +28,19 @@ function(sender, localization) {
 	        	window.canvasEngine.sceneGraph.add(obj);
 		    });
 		    
+		    var StripeSprite = new Scene_Asset_Sprite();
+		    StripeSprite.load(Lyria.Resource.name('fallingStripes.png', 'image'), function(StripeSprite) {
+	        	var obj = new Game_FallingStripes(StripeSprite);
+	        	window.canvasEngine.sceneGraph.add(obj);
+	        	obj.position.x = 700;
+	        	obj.position.y = 200;
+		    });
+		    
 		    console.log('test');
 		    
 		    $('#intro').on('click', function() {
+		    	window.canvasEngine.loop.removeTask(renderTaskID);
+				window.canvasEngine.sceneGraph.clear();
 		    	Lyria.SceneManager.show('intro2');
 		    });
 		    
@@ -38,7 +48,7 @@ function(sender, localization) {
 	}
 	
 	function onSceneDeactived() {
-		loop.removeTask(renderTaskID);
+		
 	}
 	
 	function update() {
