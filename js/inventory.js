@@ -56,8 +56,9 @@ astro.inventory.itemCatalogue = {
 		'name' : 'Pillow',
 		'use' : {
 			'pillowStone' : function () {
-				console.log('using pillow with pillowStone')
+				alert('using pillow with pillowStone')
 				//TODO change state of tallGuy so he accepts the sleeping area
+				
 			},
 			'noUse' : function() {
 				alert('cant use')
