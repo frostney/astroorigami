@@ -172,7 +172,8 @@ astro.inventory.itemCatalogue = {
 		'use' : {
 			'rocket' : function() {
 				astro.inventory.removeItem('ticket');
-				// TODO increase state of rocket
+				$('.interactableObj[rel=rocket]').attr('state', parseInt($('.interactableObj[rel=rocket]').attr('state')) + 1);
+				$('body').trigger('sthWasPickedUp');
 			},
 			'noUse' : function() {
 				alert('cant use')
@@ -184,7 +185,8 @@ astro.inventory.itemCatalogue = {
 		'use' : {
 			'rocket' : function() {
 				astro.inventory.removeItem('partyHat');
-				// TODO increase state of rocket
+				$('.interactableObj[rel=rocket]').attr('state', parseInt($('.interactableObj[rel=rocket]').attr('state')) + 1);
+				$('body').trigger('sthWasPickedUp');
 			},
 			'noUse' : function() {
 				alert('cant use')
@@ -196,7 +198,8 @@ astro.inventory.itemCatalogue = {
 		'use' : {
 			'rocket' : function() {
 				astro.inventory.removeItem('pinWheel');
-				// TODO increase state of rocket
+				$('.interactableObj[rel=rocket]').attr('state', parseInt($('.interactableObj[rel=rocket]').attr('state')) + 1);
+				$('body').trigger('sthWasPickedUp');
 			},
 			'noUse' : function() {
 				alert('cant use')

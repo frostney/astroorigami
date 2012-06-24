@@ -31,11 +31,11 @@ $(document).ready(function() {
 		Lyria.SceneManager.render();
 		Lyria.SceneManager.update(0);
 	})();
-
-	/*$('.character').removeClass('hidden');
-	astro.inventory.addItem('scissors');
-	astro.inventory.addItem('rope');
-	astro.inventory.addItem('flowerPot');*/
+/*
+	$('.character').removeClass('hidden');
+	astro.inventory.addItem('pinWheel');
+	astro.inventory.addItem('partyHat');
+	astro.inventory.addItem('ticket');*/
 	
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
