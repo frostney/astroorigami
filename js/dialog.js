@@ -27,30 +27,28 @@ astro.dialog.turnPage = function() {
 		var textElem = $('.dialog .text');
 		var textObj = astro.dialog.currentDialog;
 		var page = buttonElem.attr('page');
-		console.log(page);
 		page = isNaN(page) ? 0 : (parseInt(page) + 1);
-		console.log('page '+ page)
 		// check if this page exists if true, then show data of this page
 		if (textObj.texts[page]) {
-			console.log('if')
 			buttonElem.attr('page', page);
 			textElem.css('color', astro.npc.content[astro.dialog.currentNpc].textColor);
 			textElem.html(textObj.texts[page].npc);
 			buttonElem.html(textObj.texts[page].player);
 			$('.dialog').removeClass('hidden');
-			console.log('end if');
 		} else {
-			console.log('post')
+					  			
 			// if there are no more pages, close dialog and set npc to postcondition
 			$('.dialog').addClass('hidden');
 			buttonElem.attr('page', 0);
 			astro.npc.content[astro.dialog.currentNpc].state = textObj.postcondition;
 			astro.dialog.currentDialog = {};
+			
+			// trigger event that conversation ended
+			$('body').trigger('talkedToSO');
 		}
 	} else {
-		console.log('else')
-		// TODO get npcId from scene
-		astro.dialog.startDialog('strongGuy');	
+		// trigger talk button to get npcId for conversation
+		$('#talk .button').trigger('click');
 	}
 };
 
@@ -90,9 +88,9 @@ astro.dialog.content = {
 				}
 			]
 		},
-        1 : {
+        2 : {
              'precondition' : 1,
-             'postcondition' : 2,
+             'postcondition' : 3,
              'texts' : [
                 {
 					npc : 'I still cannot sleep! I am hungry!',
@@ -100,7 +98,7 @@ astro.dialog.content = {
 				}
              ]
         },
-        2:  {
+        4:  {
              'precondition' : 2,
              'postcondition' : 3,
              'texts' : [
