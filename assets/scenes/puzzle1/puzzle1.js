@@ -17,15 +17,6 @@ function(sender, localization) {
 		    }, 33);
 			
 			
-			 var SmallGuy = new Scene_Asset_Sprite();
-			 SmallGuy.load(Lyria.Resource.name('SmallGuy.png', 'image'), function(SmallGuy) {
-		        	var obj = new Game_Star(SmallGuy);
-		        	obj.position.x = 100;
-		        	obj.position.y = 250;
-		        	window.canvasEngine.sceneGraph.add(obj);
-			    });
-			
-			
 		    var StarAnimation = new Scene_Asset_Animation(1, 5);
 		    StarAnimation.load(Lyria.Resource.name('star1.png', 'image'), function(StarAnimation) {
 		    	for(var i = 0; i < 30; i++) {

@@ -13,9 +13,11 @@ $(document).ready(function() {
 	window.canvasEngine = {};
 	var loop = window.canvasEngine.loop =  new Scene_Loop();
     var sceneGraph = window.canvasEngine.sceneGraph = new Scene_SceneGraph();
+    var sceneGraph_Character = window.canvasEngine.sceneGraph_Character = new Scene_SceneGraph();
     loop.start();
     loop.addTask(function(loop) {
     	sceneGraph.update(loop);
+    	sceneGraph_Character.update(loop);
     }, 33);
 
 	Lyria.SceneManager.add(Lyria.Scene('gametitle'));
@@ -64,6 +66,7 @@ $(document).ready(function() {
 	$('#pickup').on('click', function() {
 		// stop character movement
 		if (interval) {
+			CharacterObj.mode = idleDirection;
 			window.canvasEngine.loop.removeTask(interval);
 		}
 		console.log('pickup button click')
@@ -86,6 +89,7 @@ $(document).ready(function() {
 	$('#talk').on('click', function() {
 		// stop character movement
 		if (interval) {
+			CharacterObj.mode = idleDirection;
 			window.canvasEngine.loop.removeTask(interval);
 		}
 		console.log('talk button click')
@@ -111,6 +115,27 @@ $(document).ready(function() {
 	// set character into the beginnig of the scene
 	var scenePos = $('#viewport').offset();
 	$('.character:visible').offset({top : scenePos.top + 280, left : scenePos.left + 10});
+	
+	
+	
+	console.log($('.animatedCharacter'));
+	
+	var viewport = new Scene_RenderTarget_Viewport($('.animatedCharacter'), window.canvasEngine.sceneGraph_Character);
+	renderTaskID = window.canvasEngine.loop.addTask(function(loop) {
+    	viewport.render(loop);
+    }, 33);
+	
+    var Astronaut = new Scene_Asset_Animation(3, 32);
+    var CharacterObj;
+    Astronaut.load(Lyria.Resource.name('astronaut_sheet.png', 'image'), function(Astronaut) {
+    	CharacterObj = new Game_Humanoid(Astronaut);
+    	window.canvasEngine.sceneGraph_Character.add(CharacterObj);
+    });
+    
+	
+    
+    var idleDirection = 'idle_right';
+    
 	/*
 	 * Move character to mouse click position
 	 */
@@ -119,12 +144,15 @@ $(document).ready(function() {
 	$('#viewport').live('click', function(event) {
 		if (interval) {
 			window.canvasEngine.loop.removeTask(interval);
+			//character.idle
+			CharacterObj.mode = idleDirection;
 		}
-			
+		
 		// just listen for clicks if character is visible
 		if ($('.character').is(':visible')) {
 
 			newCharPos = event.pageX;
+			
 			interval = window.canvasEngine.loop.addTask(function moveChar(loop) {
 				
 				var delta = loop.timeElapsed;
@@ -132,13 +160,20 @@ $(document).ready(function() {
 				var charCurPosX = $('.character:visible').offset().left;
 				if (charCurPosX > (newCharPos+10)) {
 					$('.character:visible').offset({left : charCurPosX - .2 * delta});
+					CharacterObj.mode = 'move_right';
+					idleDirection = 'idle_left';
 				} else if (charCurPosX < (newCharPos-10)) {
 					$('.character:visible').offset({left : charCurPosX + .2 * delta});
+					CharacterObj.mode = 'move_left';
+					idleDirection = 'idle_right';
 				} else {
+					CharacterObj.mode = idleDirection;
 					window.canvasEngine.loop.removeTask(interval);
 				}
 				
 			}, 33);
+			
+			lastCharPos = newCharPos;
 		}
 	});
 	
