@@ -108,7 +108,7 @@ $(document).ready(function() {
 	
 	// set character into the beginnig of the scene
 	var scenePos = $('#viewport').offset();
-	$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
+	$('.character:visible').offset({top : scenePos.top + 280, left : scenePos.left + 10});
 	/*
 	 * Move character to mouse click position
 	 */

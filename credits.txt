@@ -1,0 +1,33 @@
+(The source code is licensed under the MIT license, for details on other parts
+of the game, ask the other involved persons directly.)
+
+Credits
+
+Created at the Munich Indie Game Jam, June 2012
+
+Programming:
+
+Dawid Pach
+Andreas Fischer
+Johannes Stein
+
+Gamedesign:
+
+Dario Reinhardt
+Kristin Knillmann
+Rachel Simpson
+
+Art:
+
+Rachel Simpson
+Thomas Wellmann
+
+Story/Dialog:
+
+Kristin Knillmann
+Rachel Simpson
+Dario Reinhardt
+
+Title Track:
+The Cosmic Dream
+(by Halindir, halindir.newgrounds.com, License: CC BY-NC-SA 3.0)

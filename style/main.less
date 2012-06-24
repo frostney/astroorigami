@@ -10,17 +10,19 @@ body, html {
   width: 100%;
   height: 100%;
   .user-select(none);
+  overflow: hidden;
 }
 
 #container {
   background: #000;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
 #viewport {
   .align(50%, 40%, 800px, 400px);
-  
+  overflow: none;
 }
 
 .scene {
@@ -41,14 +43,32 @@ body, html {
   }
 }
 
-#logo {
-  .align(50%, 50%, 180px, 53px);
+.logo {
+  .align(50%, 50%, 400px, 200px);
   background-image: url("../@{pathImages}/logo.png");
   .transition(all, 5s, ease-in-out, 0s);
   .opacity(0.0);
   
   &.fade-in {
     .opacity(1.0);
+  }
+}
+
+.rocket {
+  .transition(all, 5s, ease-in-out, 5s);
+  
+  background-image: url("../@{pathImages}/rocket.png");
+  display: block;
+  position: absolute;
+  width: 256px;
+  height: 172px;
+  
+  left: -300px;
+  top: -300px;
+  
+  &.animate {
+    left: 1200px;
+    top: 1200px;
   }
 }
 
@@ -59,7 +79,7 @@ body, html {
   font-weight: bold;
   width: 100%;
   position: absolute;
-  bottom: 0px;
+  bottom: 96px;
   
   .transition(all, 5s, ease-in-out, 0s);
   .opacity(0.0);

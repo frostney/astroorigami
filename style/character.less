@@ -1,8 +1,9 @@
 .character {
-  background: #000;
   position: absolute;
   width: 64px;
-  height: 160px;
+  height: 96px;
+  
+  background-image: url("../@{pathImages}/astronaut.png");
 }
 
 .interactableElem {
@@ -13,14 +14,16 @@
 
 .interactableNpc {
   position: absolute;
-  background: #f00;
+  background: #ccc;
+  .opacity(0.9);
   width: 64px;
   height: 64px;
 }
 
 .interactableObj {
   position: absolute;
-  background: #0f0;
+  background: #ccc;
+  .opacity(0.9);
   width: 64px;
   height: 64px;
 }
