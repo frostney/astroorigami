@@ -1,3 +1,17 @@
-<div id="test" class="object">
+{{#backgrounds}}
+<div class="background {{className}}" style="background-image: url('{{filename}}')"></div>
+{{/backgrounds}}
+
+<canvas class="interactableElem" rel="rope" style="margin-left: 100px; margin-top: 300px;">
 	
-</div>
+</canvas>
+
+
+<canvas class="interactableElem" rel="pillow" style="margin-left: 300px; margin-top: 300px;">
+	
+</canvas>
+
+<canvas class="interactableNpc hidden" rel="sceneChange" next="puzzle1" style="margin-left: 700px; margin-top: 250px;">
+	
+</canvas>
+

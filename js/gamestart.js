@@ -30,12 +30,7 @@ $(document).ready(function() {
 		Lyria.SceneManager.render();
 		Lyria.SceneManager.update(0);
 	})();
-    
 
-	
-	// debug content
-	astro.inventory.addItem ('scissors');
-	astro.inventory.addItem ('pillow');
 
 	// refresh inventory with inventorydata
 	astro.inventory.refreshInventory();
@@ -43,7 +38,15 @@ $(document).ready(function() {
 	$('.inventory').on('click', '.useItem', function() {
 		alert('using item');
 		// TODO pass element where player is standing currently
-		astro.inventory.useItem($(this).parent().attr('rel'), '');
+		var character = $('#viewport .character:visible');
+		var relItem = $(this).parent().attr('rel');
+		$('.interactableObj:visible').each(function(index) {
+		  	if (hitTest(character, $(this))) {
+		  		var relObj = $(this).attr('rel');
+		  		astro.inventory.useItem(relItem, relObj);
+		  		return false;
+		  	}
+		});
 	});
 	
 	$('.dialog .button').on('click', function() {
@@ -63,6 +66,8 @@ $(document).ready(function() {
 		  		console.log(rel)
 		  		astro.inventory.addItem(rel);
 		  		$(this).remove();
+		  		$('body').trigger('sthWasPickedUp');
+		  		return false;
 		  	}
 		});
 	});
@@ -74,13 +79,17 @@ $(document).ready(function() {
 			console.log('testing for a hit ')
 		  	if (hitTest(character, $(this))) {
 		  		var rel = $(this).attr('rel');
-		  		astro.dialog.startDialog(rel);
+		  		if (rel == 'sceneChange') {
+		  			Lyria.SceneManager.show($(this).attr('next'));
+		  		} else {
+		  			astro.dialog.startDialog(rel);
+		  		}
 		  		return false;
 		  	}
 		});
 	});
 	
-	// set character into the scene
+	// set character into the beginnig of the scene
 	var scenePos = $('#viewport').offset();
 	$('.character:visible').offset({top : scenePos.top + 200, left : scenePos.left + 10});
 	/*
