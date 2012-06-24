@@ -7,7 +7,7 @@ window.setID = function(object) {
 },
 
 $(document).ready(function() {
-
+	play_multi_sound('audio_background');
 	window.canvasEngine = {};
 	var loop = window.canvasEngine.loop =  new Scene_Loop();
     var sceneGraph = window.canvasEngine.sceneGraph = new Scene_SceneGraph();
@@ -139,7 +139,7 @@ $(document).ready(function() {
 			}, 33);
 		}
 	});
-	
+
 }); 
 
 function hitTest(a, b) {
@@ -164,3 +164,23 @@ function hitTest(a, b) {
 	return !(bObj.left > aObj.right || bObj.right < aObj.left || bObj.top > aObj.bottom || bObj.bottom < aObj.top
 	);
 }
+
+	var channel_max = 10;										// number of channels
+	audiochannels = new Array();
+	for (var a=0;a<channel_max;a++) {									// prepare the channels
+		audiochannels[a] = new Array();
+		audiochannels[a]['channel'] = new Audio();						// create a new audio object
+		audiochannels[a]['finished'] = -1;							// expected end time for this channel
+	}
+	function play_multi_sound(s) {
+		for (a=0;a<audiochannels.length;a++) {
+			thistime = new Date();
+			if (audiochannels[a]['finished'] < thistime.getTime()) {			// is this channel finished?
+				audiochannels[a]['finished'] = thistime.getTime() + document.getElementById(s).duration*1000;
+				audiochannels[a]['channel'].src = document.getElementById(s).src;
+				audiochannels[a]['channel'].load();
+				audiochannels[a]['channel'].play();
+				break;
+			}
+		}
+	}
